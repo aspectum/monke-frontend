@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
-
+import { verifyUser } from './actions/authActions';
 import './App.css';
+import dispatchFromStore from './helpers/dispatchFromStore';
+import store from './store';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
-function App() {
-    return (
-        <Provider store={store}>
-            <div className="App">
-                <h1>React</h1>
-            </div>
-        </Provider>
-    );
+class App extends Component {
+    componentDidMount() {
+        dispatchFromStore(verifyUser());
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <Router>
+                    <Switch>
+                        <PrivateRoute exact path="/" component={Dashboard} />
+                        <Route exact path="/login" component={Login} />
+                    </Switch>
+                </Router>
+            </Provider>
+        );
+    }
 }
 
 export default App;

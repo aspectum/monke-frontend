@@ -7,21 +7,21 @@ import {
     UserData,
 } from '../actions/authActionTypes';
 
-interface initialState {
+interface AuthState {
     isAuthenticated: boolean;
     isLoading: boolean;
     token: string | null;
     user: UserData | null;
 }
 
-const initialState: initialState = {
+const initialState: AuthState = {
     isAuthenticated: false,
     isLoading: false,
     token: localStorage.getItem('token'),
     user: null,
 };
 
-export default function (state = initialState, action: AuthDispatchTypes) {
+export default (state = initialState, action: AuthDispatchTypes) => {
     switch (action.type) {
         case AUTH_SUCCESS:
             localStorage.setItem('token', action.payload.token);
@@ -33,7 +33,7 @@ export default function (state = initialState, action: AuthDispatchTypes) {
                 user: {
                     id: action.payload.id,
                     username: action.payload.username,
-                    email: action.payload.id,
+                    email: action.payload.email,
                 },
             };
         case AUTH_FAIL:
@@ -58,10 +58,10 @@ export default function (state = initialState, action: AuthDispatchTypes) {
                 user: {
                     id: action.payload.id,
                     username: action.payload.username,
-                    email: action.payload.id,
+                    email: action.payload.email,
                 },
             };
         default:
             return state;
     }
-}
+};
