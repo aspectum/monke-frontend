@@ -22,7 +22,7 @@ interface AlertState {
 const initialState: AlertState = {
     userAlerts: undefined,
     selectedAlert: undefined,
-    userAlertsLoading: false,
+    userAlertsLoading: true,
     selectedAlertLoading: false,
     userAlertsError: false,
     selectedAlertError: false,
