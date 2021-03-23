@@ -33,8 +33,8 @@ export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
     const body = JSON.stringify(graphqlQuery);
 
     axios
-        .post('/graphql', body)
-        .then((res) => dispatch({ type: ALERT_ALL_SUCCESS, payload: res.data.getAlerts }))
+        .post('/graphql/', body)
+        .then((res) => dispatch({ type: ALERT_ALL_SUCCESS, payload: res.data.data.getAlerts }))
         .catch((err) => {
             dispatch({ type: ALERT_ALL_FAILURE });
             console.log(err);
@@ -48,7 +48,7 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
 
     const graphqlQuery = {
         query: `
-            query fetchAlertDetails($id: ID)
+            query fetchAlertDetails($id: ID!) {
                 getSingleAlert(id: $id) {
                     id
                     targetPrice
@@ -73,8 +73,10 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
     const body = JSON.stringify(graphqlQuery);
 
     axios
-        .post('/graphql', body)
-        .then((res) => dispatch({ type: ALERT_DETAILS_SUCCESS, payload: res.data.getSingleAlert }))
+        .post('/graphql/', body)
+        .then((res) =>
+            dispatch({ type: ALERT_DETAILS_SUCCESS, payload: res.data.data.getSingleAlert })
+        )
         .catch((err) => {
             dispatch({ type: ALERT_DETAILS_FAILURE });
             console.log(err);

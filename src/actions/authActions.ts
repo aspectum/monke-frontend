@@ -22,7 +22,7 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
     const body = JSON.stringify({ email, password });
 
     axios
-        .post('/auth/login', body)
+        .post('/auth/login/', body)
         .then((res) => dispatch({ type: AUTH_SUCCESS, payload: res.data }))
         .catch((err) => {
             dispatch({ type: AUTH_FAIL });
