@@ -1,0 +1,76 @@
+.alert-details {
+    height: 100%;
+    width: 80%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .price-history-graph {
+        width: 90%;
+        margin: 0 auto;
+        overflow: hidden; /* or min-height: 0; */
+        /* probably will need to specify height */
+        flex-grow: 1;
+    }
+
+    .alert-config {
+        display: flex;
+        flex-direction: column;
+        margin: 50px 0;
+
+        .lowest-price {
+            margin: auto;
+        }
+
+        .alert-form-table {
+            .row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .col {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                &.labels {
+                    width: 20%;
+                    align-items: flex-end;
+                }
+
+                &.inputs {
+                    width: 60%;
+                    padding: 0 5px;
+                }
+
+                &.inputs > .row {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+
+                &.button {
+                    width: 20%;
+                }
+            }
+
+            input[type="text"] {
+                text-align: right;
+                width: 80%;
+                border: 0;
+                border-radius: 0;
+                margin: 1px;
+                background-color: hsl(234, 24%, 17%); // TODO
+                color: #ccc;
+            }
+
+            button {
+                background-color: rgb(20, 57, 180);
+                color: #ccc;
+                border: 0;
+                border-radius: 5px;
+                padding: 5px 10px;
+            }
+        }
+    }
+}
