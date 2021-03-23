@@ -1,0 +1,18 @@
+html {
+    height: 100vh;
+    color: #ccc;
+    /* font-family: sans-serif; */
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+}
