@@ -18,7 +18,7 @@ export interface AlertData {
     product: ProductData;
 }
 
-interface PriceData {
+export interface PriceData {
     price: number;
     date: string;
 }
