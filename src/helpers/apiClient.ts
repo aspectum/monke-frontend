@@ -7,7 +7,7 @@ const API_URL = 'http://localhost:5000';
 // https://github.com/axios/axios#interceptors
 // https://github.com/axios/axios#request-config
 axios.interceptors.request.use(
-    function (config) {
+    (config) => {
         // login and register routes don't expect token
         if (!config.url!.endsWith('login') && !config.url!.endsWith('register')) {
             const { token } = store.getState().authReducer;
@@ -23,7 +23,7 @@ axios.interceptors.request.use(
 
         return config;
     },
-    function (error) {
+    (error) => {
         return Promise.reject(error);
     }
 );
