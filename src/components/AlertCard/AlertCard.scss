@@ -1,0 +1,43 @@
+@import '../../styles/config';
+@import '../../styles/colors';
+
+.alert-card {
+    display: flex;
+    height: 100% / $n-cards-showing;
+    padding: 5px;
+    margin: 5px 0;
+
+    &.active {
+        background-color: hsl(234, 24%, 15%); // TODO
+    }
+
+    .alert-image {
+        height: 100%;
+        width: 25%;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            margin: auto;
+        }
+    }
+
+    .alert-desc {
+        height: 100%;
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        // padding: 10px 0;
+    }
+
+    // span.alert-title {
+    
+    // }
+    
+    span.alert-target-price {
+        color: $color-target-price;
+        font-weight: 900;
+    }
+}
