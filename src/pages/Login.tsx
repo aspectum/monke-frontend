@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
