@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AlertDetailedData } from '../../actions/alertActionTypes';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
+import dateFormatter from '../../helpers/dateFormatter';
 import { RootState } from '../../store';
 import './AlertDetais.scss';
 
@@ -50,7 +51,8 @@ class AlertDetais extends Component<Props, State> {
                     <div className="lowest-price">
                         {/* Put actual lowest price and parse correctly values */}
                         <h2>
-                            Lowest Price: $ {lowestPrice.price} in {lowestPrice.date}
+                            Lowest Price: $ {lowestPrice.price} in{' '}
+                            {dateFormatter(new Date(+lowestPrice.date))}
                         </h2>
                     </div>
                     <form>
