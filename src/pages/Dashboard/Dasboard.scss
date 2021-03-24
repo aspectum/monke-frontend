@@ -37,5 +37,10 @@
         font-size: 12px; /* TODO */
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
+
+        .side-bar {
+            width: 20%;
+            position: relative;
+        }
     }
 }

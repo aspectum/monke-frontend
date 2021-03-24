@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import NewAlertButton from '../../components/NewAlertButton/NewAlertButton';
 import AlertDetais from '../../containers/AlertDetais/AlertDetais';
 import AlertList from '../../containers/AlertList/AlertList';
 import './Dasboard.scss';
@@ -12,7 +13,10 @@ function Dashboard(): ReactElement {
             </nav>
             <div className="content">
                 <div className="container">
-                    <AlertList />
+                    <div className="side-bar">
+                        <NewAlertButton />
+                        <AlertList />
+                    </div>
                     <AlertDetais />
                 </div>
             </div>
