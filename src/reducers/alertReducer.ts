@@ -8,6 +8,8 @@ import {
     ALERT_DETAILS_FAILURE,
     ALERT_ALL_SUCCESS,
     ALERT_DETAILS_SUCCESS,
+    ALERT_CREATE_LOADING,
+    ALERT_CREATE_SUCCESS,
 } from '../actions/alertActionTypes';
 
 interface AlertState {
@@ -36,6 +38,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsLoading: true,
                 userAlertsError: false,
             };
+        case ALERT_CREATE_LOADING: // TODO: do this properly
         case ALERT_DETAILS_LOADING:
             return {
                 ...state,
@@ -63,6 +66,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsLoading: false,
                 userAlertsError: false,
             };
+        case ALERT_CREATE_SUCCESS: // TODO: do this properly
         case ALERT_DETAILS_SUCCESS:
             return {
                 ...state,

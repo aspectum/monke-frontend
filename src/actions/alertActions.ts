@@ -8,7 +8,25 @@ import {
     ALERT_DETAILS_FAILURE,
     ALERT_ALL_SUCCESS,
     ALERT_DETAILS_SUCCESS,
+    ALERT_CREATE_LOADING,
+    ALERT_CREATE_SUCCESS,
+    ALERT_CREATE_FAILURE,
 } from './alertActionTypes';
+
+const alertDetailsQuery = `
+id
+targetPrice
+product {
+    ASIN
+    url
+    title
+    imageUrl
+    currency
+    priceHistory {
+        price
+        date
+    }
+}`;
 
 // GET ALL USER ALERTS
 export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
@@ -42,7 +60,6 @@ export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
 };
 
 // GET PRICE HISTORY FOR A CHOSEN ALERT
-// MIGHT NOT WORK
 export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
     dispatch({ type: ALERT_DETAILS_LOADING });
 
@@ -50,19 +67,7 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
         query: `
             query fetchAlertDetails($id: ID!) {
                 getSingleAlert(id: $id) {
-                    id
-                    targetPrice
-                    product {
-                        ASIN
-                        url
-                        title
-                        imageUrl
-                        currency
-                        priceHistory {
-                        price
-                        date
-                        }
-                    }
+                    ${alertDetailsQuery}
                 }
             }
         `,
@@ -79,6 +84,35 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
         )
         .catch((err) => {
             dispatch({ type: ALERT_DETAILS_FAILURE });
+            console.log(err);
+        });
+};
+
+// CREATE NEW ALERT
+export const createNewAlert = (url: string, targetPrice: number) => (dispatch: AppDispatch) => {
+    console.log(url, targetPrice);
+    dispatch({ type: ALERT_CREATE_LOADING });
+
+    const graphqlQuery = {
+        query: `
+            mutation createNewAlert($url: String!, $targetPrice: Float!) {
+                createAlert(url: $url, targetPrice: $targetPrice) {
+                    ${alertDetailsQuery}
+                }
+            }
+        `,
+        variables: {
+            url,
+            targetPrice,
+        },
+    };
+    const body = JSON.stringify(graphqlQuery);
+
+    axios
+        .post('/graphql/', body)
+        .then((res) => dispatch({ type: ALERT_CREATE_SUCCESS, payload: res.data.data.createAlert })) // TODO: Dispatch close modal
+        .catch((err) => {
+            dispatch({ type: ALERT_CREATE_FAILURE });
             console.log(err);
         });
 };
