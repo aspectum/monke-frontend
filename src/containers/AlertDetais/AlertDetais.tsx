@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AlertDetailedData } from '../../actions/alertActionTypes';
+import ButtonSubmit from '../../components/CustomForm/ButtonSubmit';
+import CustomForm from '../../components/CustomForm/CustomForm';
+import TextInput from '../../components/CustomForm/TextInput';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
 import dateFormatter from '../../helpers/dateFormatter';
 import { RootState } from '../../store';
@@ -13,10 +16,46 @@ interface Props {
 }
 
 // Inputs
-interface State {}
+interface State {
+    title: string;
+    price: string;
+}
 
 class AlertDetais extends Component<Props, State> {
-    state = {};
+    state = {
+        title: '',
+        price: '',
+    };
+
+    // componentDidMount() {
+    //     if (this.props.alert) {
+    //         this.setState({
+    //             title: this.props.alert.product.title,
+    //             price: this.props.alert.targetPrice.toString(),
+    //         });
+    //     }
+    // }
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.alert !== prevProps.alert) {
+            if (this.props.alert) {
+                // eslint-disable-next-line react/no-did-update-set-state
+                this.setState({
+                    title: this.props.alert.product.title,
+                    price: this.props.alert.targetPrice.toString(),
+                });
+            }
+        }
+    }
+
+    onSubmit = () => {
+        console.log('absolutely nothing');
+    };
+
+    // Updates the state with the inputs
+    onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({ [e.target.name]: e.target.value } as any);
+    };
 
     render() {
         const { alert, isLoading, isError } = this.props;
@@ -49,13 +88,43 @@ class AlertDetais extends Component<Props, State> {
                 </div>
                 <div className="alert-config">
                     <div className="lowest-price">
-                        {/* Put actual lowest price and parse correctly values */}
+                        {/* // TODO: Put actual lowest price and parse correctly values */}
                         <h2>
                             Lowest Price: $ {lowestPrice.price} in{' '}
                             {dateFormatter(new Date(+lowestPrice.date))}
                         </h2>
                     </div>
-                    <form>
+                    <CustomForm>
+                        <TextInput id="inpt" label="Input for test" value="valor" />
+                        <ButtonSubmit text="Button" />
+                    </CustomForm>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-edit-alert">
+                            <label htmlFor="ea-title" id="ea-title-label">
+                                Title:{' '}
+                            </label>
+                            <input
+                                type="text"
+                                id="ea-title"
+                                name="title"
+                                value={this.state.title}
+                                onChange={this.onChange}
+                            />
+                            <label htmlFor="ea-price" id="ea-price-label">
+                                Target price:{' '}
+                            </label>
+                            <input
+                                type="text"
+                                id="ea-price"
+                                name="price"
+                                value={this.state.price}
+                                onChange={this.onChange}
+                            />
+                            <button type="submit">Confirm</button>
+                            <button type="button">Delete</button>
+                        </div>
+                    </form>
+                    {/* <form>
                         <div className="alert-form-table">
                             <div className="row">
                                 <div className="col labels">
@@ -85,7 +154,7 @@ class AlertDetais extends Component<Props, State> {
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> */}
                 </div>
             </div>
         );
