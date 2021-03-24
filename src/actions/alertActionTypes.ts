@@ -4,7 +4,17 @@ export const ALERT_ALL_SUCCESS = 'ALERT_ALL_SUCCESS';
 export const ALERT_DETAILS_SUCCESS = 'ALERT_DETAILS_SUCCESS';
 export const ALERT_ALL_FAILURE = 'ALERT_ALL_FAILURE';
 export const ALERT_DETAILS_FAILURE = 'ALERT_DETAILS_FAILURE';
+export const ALERT_CREATE_LOADING = 'ALERT_CREATE_LOADING';
+export const ALERT_CREATE_SUCCESS = 'ALERT_CREATE_SUCCESS';
+export const ALERT_CREATE_FAILURE = 'ALERT_CREATE_FAILURE';
+export const ALERT_EDIT_LOADING = 'ALERT_EDIT_LOADING';
+export const ALERT_EDIT_SUCCESS = 'ALERT_EDIT_SUCCESS';
+export const ALERT_EDIT_FAILURE = 'ALERT_EDIT_FAILURE';
+export const ALERT_DELETE_LOADING = 'ALERT_DELETE_LOADING';
+export const ALERT_DELETE_SUCCESS = 'ALERT_DELETE_SUCCESS';
+export const ALERT_DELETE_FAILURE = 'ALERT_DELETE_FAILURE';
 
+// -------------- Payload types --------------
 interface ProductData {
     url: string;
     title: string;
@@ -36,6 +46,7 @@ export interface AlertDetailedData extends Omit<AlertData, 'product'> {
 //     message: string;
 // }
 
+// -------------- List alerts interfaces --------------
 export interface AlertAllLoading {
     type: typeof ALERT_ALL_LOADING;
 }
@@ -64,10 +75,61 @@ export interface AlertDetailsSuccess {
     payload: AlertDetailedData;
 }
 
+// -------------- CREATE ALERT INTERFACES --------------
+export interface AlertCreateLoading {
+    type: typeof ALERT_CREATE_LOADING;
+}
+
+export interface AlertCreateFailure {
+    type: typeof ALERT_CREATE_FAILURE;
+}
+
+export interface AlertCreateSuccess {
+    type: typeof ALERT_CREATE_SUCCESS;
+    payload: AlertDetailedData;
+}
+
+// -------------- EDIT ALERT INTERFACES --------------
+export interface AlertEditLoading {
+    type: typeof ALERT_EDIT_LOADING;
+}
+
+export interface AlertEditFailure {
+    type: typeof ALERT_EDIT_FAILURE;
+}
+
+export interface AlertEditSuccess {
+    type: typeof ALERT_EDIT_SUCCESS;
+    payload: AlertDetailedData;
+}
+
+// -------------- DELETE ALERT INTERFACES --------------
+export interface AlertDeleteLoading {
+    type: typeof ALERT_DELETE_LOADING;
+}
+
+export interface AlertDeleteFailure {
+    type: typeof ALERT_DELETE_FAILURE;
+}
+
+export interface AlertDeleteSuccess {
+    type: typeof ALERT_DELETE_SUCCESS;
+    payload: AlertDetailedData;
+}
+
 export type AlertDispatchTypes =
     | AlertAllLoading
     | AlertDetailsLoading
     | AlertAllSuccess
     | AlertDetailsSuccess
     | AlertAllFailure
-    | AlertDetailsFailure;
+    | AlertDetailsFailure
+    | AlertCreateLoading
+    | AlertCreateSuccess
+    | AlertCreateFailure
+    | AlertEditLoading
+    | AlertEditSuccess
+    | AlertEditFailure
+    | AlertDeleteLoading
+    | AlertDeleteSuccess
+    | AlertDeleteFailure;
