@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editAlert } from '../../actions/alertActions';
+import { deleteAlert, editAlert } from '../../actions/alertActions';
 import ButtonSubmit from '../../components/CustomForm/ButtonSubmit';
 import CustomForm from '../../components/CustomForm/CustomForm';
 import TextInput from '../../components/CustomForm/TextInput';
@@ -19,6 +19,10 @@ function AlertDetais(): ReactElement {
 
     const onSubmit = (fields: any) => {
         dispatch(editAlert(state.alert!.id, +fields['ea-price']));
+    };
+
+    const deleteBtnOnClick = () => {
+        dispatch(deleteAlert(state.alert!.id));
     };
 
     // RENDERING
@@ -66,7 +70,13 @@ function AlertDetais(): ReactElement {
                         value={alert.targetPrice.toString()}
                     />
                     <ButtonSubmit className="btn-ea btn-edit-alert" text="Edit" />
-                    <ButtonSubmit className="btn-ea btn-delete-alert" text="Delete" />
+                    <button
+                        className="btn-ea btn-delete-alert"
+                        type="button"
+                        onClick={deleteBtnOnClick}
+                    >
+                        Delete
+                    </button>
                 </CustomForm>
             </div>
         </div>

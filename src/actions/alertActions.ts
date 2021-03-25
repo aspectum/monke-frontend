@@ -14,6 +14,9 @@ import {
     ALERT_EDIT_LOADING,
     ALERT_EDIT_FAILURE,
     ALERT_EDIT_SUCCESS,
+    ALERT_DELETE_FAILURE,
+    ALERT_DELETE_LOADING,
+    ALERT_DELETE_SUCCESS,
 } from './alertActionTypes';
 import { hideNewAlertModal } from './modalActions';
 
@@ -147,6 +150,33 @@ export const editAlert = (id: string, newPrice: number) => (dispatch: AppDispatc
         .then((res) => dispatch({ type: ALERT_EDIT_SUCCESS, payload: res.data.data.editAlert })) // TODO: Dispatch close modal
         .catch((err) => {
             dispatch({ type: ALERT_EDIT_FAILURE });
+            console.log(err);
+        });
+};
+
+// DELETE ALERT
+export const deleteAlert = (id: string) => (dispatch: AppDispatch) => {
+    dispatch({ type: ALERT_DELETE_LOADING });
+
+    const graphqlQuery = {
+        query: `
+            mutation deleteAlert($id: ID!) {
+                deleteAlert(id: $id) {
+                    ${alertDetailsQuery}
+                }
+            }
+        `,
+        variables: {
+            id,
+        },
+    };
+    const body = JSON.stringify(graphqlQuery);
+
+    axios
+        .post('/graphql/', body)
+        .then((res) => dispatch({ type: ALERT_DELETE_SUCCESS, payload: res.data.data.deleteAlert })) // TODO: Dispatch close modal
+        .catch((err) => {
+            dispatch({ type: ALERT_DELETE_FAILURE });
             console.log(err);
         });
 };

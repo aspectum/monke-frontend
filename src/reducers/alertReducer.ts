@@ -7,6 +7,8 @@ import {
     ALERT_ALL_SUCCESS,
     ALERT_CREATE_LOADING,
     ALERT_CREATE_SUCCESS,
+    ALERT_DELETE_LOADING,
+    ALERT_DELETE_SUCCESS,
     ALERT_DETAILS_FAILURE,
     ALERT_DETAILS_LOADING,
     ALERT_DETAILS_SUCCESS,
@@ -42,6 +44,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
             };
         case ALERT_CREATE_LOADING: // TODO: do this properly
         case ALERT_EDIT_LOADING: // TODO: do this properly
+        case ALERT_DELETE_LOADING: // TODO: do this properly
         case ALERT_DETAILS_LOADING:
             return {
                 ...state,
@@ -69,6 +72,21 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsLoading: false,
                 userAlertsError: false,
             };
+        // TODO: do this properly
+        case ALERT_DELETE_SUCCESS: {
+            // replacing the outdated alert in userAlerts
+            const newUserAlerts = state.userAlerts.filter(
+                (alert) => alert.id !== action.payload.id
+            );
+
+            return {
+                ...state,
+                userAlerts: newUserAlerts,
+                selectedAlert: undefined,
+                selectedAlertLoading: false,
+                selectedAlertError: false,
+            };
+        }
         // TODO: do this properly
         case ALERT_EDIT_SUCCESS: {
             // replacing the outdated alert in userAlerts
