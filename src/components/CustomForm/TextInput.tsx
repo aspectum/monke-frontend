@@ -1,28 +1,30 @@
-/* eslint-disable react/require-default-props */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 export interface TextInputProps {
     id: string;
-    name?: string;
     value?: string;
     label: string;
-    onChange?: () => void;
+    onChange?: (id: string, value: string) => void;
 }
 
-function TextInput({ id, name, label, onChange, value }: TextInputProps): ReactElement {
-    // parent component should always pass all parameters
-    console.log(name);
-    console.log(onChange);
-    if (!name || !onChange) {
-        throw new TypeError('Expected parent component <CustomForm>');
-    }
+function TextInput({ id, label, value = '', onChange }: TextInputProps): ReactElement {
+    const [state, setState] = useState(value);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!onChange) {
+            throw new TypeError('Expected parent component <CustomForm>');
+        }
+        onChange(id, e.target.value);
+        setState(e.target.value);
+    };
+
     const labelId = `${id}-label`;
+
     return (
         <>
             <label htmlFor={id} id={labelId}>
                 {label}
             </label>
-            <input type="text" name={name} id={id} onChange={onChange} value={value} />
+            <input type="text" id={id} onChange={handleChange} value={state} />
         </>
     );
 }

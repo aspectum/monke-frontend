@@ -1,73 +1,60 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React, { Component, ReactElement } from 'react';
-import { TextInputProps } from './TextInput';
 
-// https://stackoverflow.com/a/32371612
-
-// MAYBE PUT STATE IN TEXTINPUT, AND CALL SETSTATE FROM HERE AND HAVE THIS BE STATELESS
-
-interface Child extends Omit<ReactElement, 'props' | 'type'> {
-    props: TextInputProps;
-    type: {
-        name: string;
-    };
-}
+// https://stackoverflow.com/questions/32370994/how-to-pass-props-to-this-props-children/32371612#32371612
+// https://stackoverflow.com/questions/27864951/how-to-access-childs-state-in-react/27875018#27875018
+// https://stackoverflow.com/questions/53688899/typescript-and-react-children-type/57253387#57253387
 
 interface Props {
-    children: Child[];
+    children: React.ReactNode[];
+    onSubmit: (fields: Object) => void;
 }
-type State = any;
+
+type State = {
+    renderedChildren: ReactElement[];
+    fields: Object;
+};
 
 class CustomForm extends Component<Props, State> {
-    state: State = {};
+    state: any = {
+        renderedChildren: [],
+        fields: {},
+    };
 
     componentDidMount() {
-        const renderedChildren = this.props.children.map((child) => {
-            console.log(child);
-            const additionalProps: any = {};
+        const fields: any = {};
 
-            if (child.type.name === 'TextInput') {
-                if (child.props.value) {
-                    this.setState({ [child.props.id]: child.props.value } as any);
-                } else {
-                    this.setState({ [child.props.id]: '' } as any);
+        // Rendering the children
+        const renderedChildren = React.Children.map(this.props.children, (child) => {
+            if (React.isValidElement(child)) {
+                if ((child.type as React.FunctionComponent).name === 'TextInput') {
+                    fields[child.props.id] = child.props.value || ''; // Saving to store in Form state
                 }
-                // additionalProps.value = (this.state as any)[child.props.id];
-                additionalProps.name = child.props.id;
-                additionalProps.onChange = this.onChange;
+                return React.cloneElement(child, {
+                    ...child.props,
+                    value: child.props.value || '', // empty string in case no value was given
+                    onChange: this.handleFieldChange,
+                });
             }
-            return (child.type as any)({ ...child.props, ...additionalProps });
-        });
-        this.setState({ renderedChildren });
+            return child;
+        }) as ReactElement[];
+
+        this.setState({ renderedChildren, fields });
     }
 
-    onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let index: any = null;
-        let child: any = null;
-        this.props.children.forEach((c, i) => {
-            if (c.props.id === e.target.id) {
-                index = i;
-                child = c;
-            }
-        });
-        if (child) {
-            const additionalProps = {
-                name: child.props.id,
-                onChange: this.onChange,
-                value: e.target.value,
-            };
-            const updatedChildren = this.state.renderedChildren;
-            updatedChildren[index] = (child.type as any)({ ...child.props, ...additionalProps });
-            this.setState({ ...this.state, renderedChildren: updatedChildren });
-            this.setState({ [e.target.name]: e.target.value } as any);
-        }
-        console.log(e.target.value);
-        console.log(this.state[e.target.name]);
+    handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        this.props.onSubmit(this.state.fields);
+    };
+
+    // This is called by the children (TextInput) onChange
+    handleFieldChange = (id: string, value: string) => {
+        this.setState({ fields: { ...this.state.fields, [id]: value } });
     };
 
     render() {
         if (this.state.renderedChildren) {
-            return this.state.renderedChildren;
+            return <form onSubmit={this.handleSubmit}>{this.state.renderedChildren}</form>;
         }
         return <div>test</div>;
     }

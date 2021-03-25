@@ -94,8 +94,9 @@ class AlertDetais extends Component<Props, State> {
                             {dateFormatter(new Date(+lowestPrice.date))}
                         </h2>
                     </div>
-                    <CustomForm>
+                    <CustomForm onSubmit={(fields) => console.log(fields)}>
                         <TextInput id="inpt" label="Input for test" value="valor" />
+                        <TextInput id="inpt2" label="Input2 for test" />
                         <ButtonSubmit text="Button" />
                     </CustomForm>
                     <form onSubmit={this.onSubmit}>
