@@ -16,45 +16,25 @@
     .alert-config {
         display: flex;
         flex-direction: column;
-        margin: 50px 0;
+        margin: 50px auto;
+        width: 90%;
 
         .lowest-price {
             margin: auto;
         }
 
-        .alert-form-table {
-            .row {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-            }
+        .form-edit-alert {
+            display: grid;
+            grid-template-rows: 1fr 0.5fr 1fr;
+            grid-template-columns: 1fr 3fr 1fr;
+            width: 100%;
 
-            .col {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
+            input {
+                width: 100%;
+                border: 0;
+                padding: 5px;
+                box-sizing: border-box;
 
-                &.labels {
-                    width: 20%;
-                    align-items: flex-end;
-                }
-
-                &.inputs {
-                    width: 60%;
-                    padding: 0 5px;
-                }
-
-                &.inputs > .row {
-                    width: 100%;
-                    justify-content: flex-start;
-                }
-
-                &.button {
-                    width: 20%;
-                }
-            }
-
-            input[type="text"] {
                 text-align: right;
                 width: 80%;
                 border: 0;
@@ -64,12 +44,44 @@
                 color: #ccc;
             }
 
-            button {
+            .btn-ea {
                 background-color: rgb(20, 57, 180);
                 color: #ccc;
                 border: 0;
                 border-radius: 5px;
                 padding: 5px 10px;
+            }
+
+            #ea-title-label {
+                align-self: center;
+                grid-row: 1 / span 1;
+                grid-column: 1 / span 1;
+            }
+        
+            #ea-title {
+                grid-row: 1 / span 1;
+                grid-column: 2 / span 1;
+            }
+        
+            #ea-price-label {
+                align-self: center;
+                grid-row: 3 / span 1;
+                grid-column: 1 / span 1;
+            }
+        
+            #ea-price {
+                grid-row: 3 / span 1;
+                grid-column: 2 / span 1;
+            }
+    
+            .btn-edit-alert {
+                grid-row: 1 / span 1;
+                grid-column: 3 / span 1;
+            }
+    
+            .btn-delete-alert {
+                grid-row: 3 / span 1;
+                grid-column: 3 / span 1;
             }
         }
     }
