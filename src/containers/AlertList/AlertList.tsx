@@ -7,7 +7,8 @@ import { RootState } from '../../store';
 import './AlertList.scss';
 
 interface Props {
-    alerts: AlertData[] | undefined;
+    alerts: AlertData[];
+    selectedAlert?: AlertData;
     isLoading: boolean;
     isError: boolean;
     fetchAllAlerts: () => void;
@@ -23,13 +24,20 @@ class AlertList extends Component<Props, State> {
     };
 
     componentDidMount() {
-        // eslint-disable-next-line react/destructuring-assignment
         this.props.fetchAllAlerts();
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props !== prevProps) {
+            if (this.props.selectedAlert) {
+                // eslint-disable-next-line react/no-did-update-set-state
+                this.setState({ selectedAlertId: this.props.selectedAlert.id });
+            }
+        }
     }
 
     onClick = (alertId: string) => () => {
         this.setState({ selectedAlertId: alertId });
-        // eslint-disable-next-line react/destructuring-assignment
         this.props.fetchAlertDetails(alertId);
     };
 
@@ -51,7 +59,7 @@ class AlertList extends Component<Props, State> {
                 </div>
             );
         }
-        if (!alerts) {
+        if (!alerts[0]) {
             return (
                 <div className="alert-list">
                     <div style={{ margin: 'auto' }}>No alerts</div>
@@ -77,6 +85,7 @@ class AlertList extends Component<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
     alerts: state.alertReducer.userAlerts,
+    selectedAlert: state.alertReducer.selectedAlert,
     isLoading: state.alertReducer.userAlertsLoading,
     isError: state.alertReducer.userAlertsError,
 });

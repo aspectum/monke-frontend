@@ -13,7 +13,7 @@ import {
 } from '../actions/alertActionTypes';
 
 interface AlertState {
-    userAlerts?: AlertData[];
+    userAlerts: AlertData[];
     selectedAlert?: AlertDetailedData;
     userAlertsLoading: boolean;
     selectedAlertLoading: boolean;
@@ -22,7 +22,7 @@ interface AlertState {
 }
 
 const initialState: AlertState = {
-    userAlerts: undefined,
+    userAlerts: [],
     selectedAlert: undefined,
     userAlertsLoading: true,
     selectedAlertLoading: false,
@@ -48,7 +48,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
         case ALERT_ALL_FAILURE:
             return {
                 ...state,
-                userAlerts: undefined,
+                userAlerts: [],
                 userAlertsLoading: false,
                 userAlertsError: true,
             };
@@ -67,6 +67,13 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsError: false,
             };
         case ALERT_CREATE_SUCCESS: // TODO: do this properly
+            return {
+                ...state,
+                userAlerts: [...state.userAlerts, action.payload],
+                selectedAlert: action.payload,
+                selectedAlertLoading: false,
+                selectedAlertError: false,
+            };
         case ALERT_DETAILS_SUCCESS:
             return {
                 ...state,

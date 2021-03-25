@@ -12,6 +12,7 @@ import {
     ALERT_CREATE_SUCCESS,
     ALERT_CREATE_FAILURE,
 } from './alertActionTypes';
+import { hideNewAlertModal } from './modalActions';
 
 const alertDetailsQuery = `
 id
@@ -110,7 +111,10 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
 
     axios
         .post('/graphql/', body)
-        .then((res) => dispatch({ type: ALERT_CREATE_SUCCESS, payload: res.data.data.createAlert })) // TODO: Dispatch close modal
+        .then((res) => {
+            dispatch({ type: ALERT_CREATE_SUCCESS, payload: res.data.data.createAlert });
+            dispatch(hideNewAlertModal() as any);
+        }) // TODO: Dispatch close modal
         .catch((err) => {
             dispatch({ type: ALERT_CREATE_FAILURE });
             console.log(err);
