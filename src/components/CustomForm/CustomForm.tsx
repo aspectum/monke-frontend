@@ -8,6 +8,7 @@ import React, { Component, ReactElement } from 'react';
 interface Props {
     children: React.ReactNode[];
     onSubmit: (fields: Object) => void;
+    className?: string;
 }
 
 type State = {
@@ -54,7 +55,11 @@ class CustomForm extends Component<Props, State> {
 
     render() {
         if (this.state.renderedChildren) {
-            return <form onSubmit={this.handleSubmit}>{this.state.renderedChildren}</form>;
+            return (
+                <form className={this.props.className || ''} onSubmit={this.handleSubmit}>
+                    {this.state.renderedChildren}
+                </form>
+            );
         }
         return <div>test</div>;
     }
