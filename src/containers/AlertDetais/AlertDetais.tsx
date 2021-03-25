@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editAlert } from '../../actions/alertActions';
 import ButtonSubmit from '../../components/CustomForm/ButtonSubmit';
 import CustomForm from '../../components/CustomForm/CustomForm';
 import TextInput from '../../components/CustomForm/TextInput';
@@ -9,11 +10,16 @@ import { RootState } from '../../store';
 import './AlertDetais.scss';
 
 function AlertDetais(): ReactElement {
+    const dispatch = useDispatch();
     const state = useSelector((store: RootState) => ({
         alert: store.alertReducer.selectedAlert,
         isLoading: store.alertReducer.selectedAlertLoading,
         isError: store.alertReducer.selectedAlertError,
     }));
+
+    const onSubmit = (fields: any) => {
+        dispatch(editAlert(state.alert!.id, +fields['ea-price']));
+    };
 
     // RENDERING
     const { alert, isLoading, isError } = state;
@@ -52,7 +58,7 @@ function AlertDetais(): ReactElement {
                         {dateFormatter(new Date(+lowestPrice.date))}
                     </h2>
                 </div>
-                <CustomForm className="form-edit-alert" onSubmit={(fields) => console.log(fields)}>
+                <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
                     <TextInput id="ea-title" label="Title: " value={alert.product.title} />
                     <TextInput
                         id="ea-price"

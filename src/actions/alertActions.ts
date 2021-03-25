@@ -11,6 +11,9 @@ import {
     ALERT_CREATE_LOADING,
     ALERT_CREATE_SUCCESS,
     ALERT_CREATE_FAILURE,
+    ALERT_EDIT_LOADING,
+    ALERT_EDIT_FAILURE,
+    ALERT_EDIT_SUCCESS,
 } from './alertActionTypes';
 import { hideNewAlertModal } from './modalActions';
 
@@ -91,7 +94,6 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
 
 // CREATE NEW ALERT
 export const createNewAlert = (url: string, targetPrice: number) => (dispatch: AppDispatch) => {
-    console.log(url, targetPrice);
     dispatch({ type: ALERT_CREATE_LOADING });
 
     const graphqlQuery = {
@@ -117,6 +119,34 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
         }) // TODO: Dispatch close modal
         .catch((err) => {
             dispatch({ type: ALERT_CREATE_FAILURE });
+            console.log(err);
+        });
+};
+
+// EDIT ALERT
+export const editAlert = (id: string, newPrice: number) => (dispatch: AppDispatch) => {
+    dispatch({ type: ALERT_EDIT_LOADING });
+
+    const graphqlQuery = {
+        query: `
+            mutation editAlert($id: ID!, $newPrice: Float) {
+                editAlert(id: $id, newPrice: $newPrice) {
+                    ${alertDetailsQuery}
+                }
+            }
+        `,
+        variables: {
+            id,
+            newPrice,
+        },
+    };
+    const body = JSON.stringify(graphqlQuery);
+
+    axios
+        .post('/graphql/', body)
+        .then((res) => dispatch({ type: ALERT_EDIT_SUCCESS, payload: res.data.data.editAlert })) // TODO: Dispatch close modal
+        .catch((err) => {
+            dispatch({ type: ALERT_EDIT_FAILURE });
             console.log(err);
         });
 };

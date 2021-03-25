@@ -2,14 +2,16 @@ import {
     AlertData,
     AlertDetailedData,
     AlertDispatchTypes,
-    ALERT_ALL_LOADING,
-    ALERT_DETAILS_LOADING,
     ALERT_ALL_FAILURE,
-    ALERT_DETAILS_FAILURE,
+    ALERT_ALL_LOADING,
     ALERT_ALL_SUCCESS,
-    ALERT_DETAILS_SUCCESS,
     ALERT_CREATE_LOADING,
     ALERT_CREATE_SUCCESS,
+    ALERT_DETAILS_FAILURE,
+    ALERT_DETAILS_LOADING,
+    ALERT_DETAILS_SUCCESS,
+    ALERT_EDIT_LOADING,
+    ALERT_EDIT_SUCCESS,
 } from '../actions/alertActionTypes';
 
 interface AlertState {
@@ -39,6 +41,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsError: false,
             };
         case ALERT_CREATE_LOADING: // TODO: do this properly
+        case ALERT_EDIT_LOADING: // TODO: do this properly
         case ALERT_DETAILS_LOADING:
             return {
                 ...state,
@@ -66,6 +69,26 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsLoading: false,
                 userAlertsError: false,
             };
+        // TODO: do this properly
+        case ALERT_EDIT_SUCCESS: {
+            // replacing the outdated alert in userAlerts
+            const id = action.payload.id;
+            const newUserAlerts: AlertData[] = [];
+            state.userAlerts.forEach((alert) => {
+                if (alert.id === id) {
+                    return newUserAlerts.push(action.payload);
+                }
+                return newUserAlerts.push(alert);
+            });
+
+            return {
+                ...state,
+                userAlerts: newUserAlerts,
+                selectedAlert: action.payload,
+                selectedAlertLoading: false,
+                selectedAlertError: false,
+            };
+        }
         case ALERT_CREATE_SUCCESS: // TODO: do this properly
             return {
                 ...state,
