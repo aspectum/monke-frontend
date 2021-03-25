@@ -62,7 +62,7 @@ function PriceGraph({ priceHistory }: Props): ReactElement {
             data={nivoData}
             colors="#1439b4"
             theme={nivoTheme}
-            margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+            margin={{ top: 50, right: 40, bottom: 50, left: 60 }}
             xScale={{
                 type: 'time',
                 // format: '%Y-%m-%d',
