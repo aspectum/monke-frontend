@@ -1,3 +1,7 @@
+body {
+    background-color: black; // TODO: put this somewhere else
+}
+
 .modal-overflow-wrapper {
     height: 100%;
     width: 100%;
@@ -12,7 +16,7 @@
         transition: all ease-in-out 0.2s;
     
         &.visible {
-            filter: grayscale(80%) blur(7px);
+            filter: grayscale(80%) blur(7px);   // dark bg -> dark border | light bg -> light border
             transform: scale(1.03);
         }
     }
