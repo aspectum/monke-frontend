@@ -1,8 +1,15 @@
 import axios from '../helpers/apiClient';
 import { AppDispatch } from '../store';
 
-import { AUTH_SUCCESS, AUTH_FAIL, AUTH_CHECKING, AUTH_VERIFIED } from './authActionTypes';
-import { showErrorMessage } from './messageActions';
+import {
+    AUTH_SUCCESS,
+    AUTH_FAIL,
+    AUTH_CHECKING,
+    AUTH_VERIFIED,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+} from './authActionTypes';
+import { showErrorMessage, showSuccessMessage } from './messageActions';
 
 // VERIFY IF USER IS AUTHENTICATED
 export const verifyUser = () => (dispatch: AppDispatch) => {
@@ -27,6 +34,34 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
         .then((res) => dispatch({ type: AUTH_SUCCESS, payload: res.data }))
         .catch((err) => {
             dispatch({ type: AUTH_FAIL });
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
+        });
+};
+
+// LOGIN
+export const register = (username: string, email: string, password: string) => (
+    dispatch: AppDispatch
+) => {
+    // Request Body
+    const body = JSON.stringify({ username, email, password });
+
+    axios
+        .post('/auth/register/', body)
+        .then(() => {
+            dispatch({ type: REGISTER_SUCCESS });
+            dispatch(
+                showSuccessMessage([
+                    'Registered successfully. You can now log into your account',
+                ]) as any
+            );
+        })
+        .catch((err) => {
+            dispatch({ type: REGISTER_FAIL });
             let messages = ['Unknown error occurred'];
             if (err.response) {
                 messages = err.response.data.errors.map((e: any) => e.message as string);

@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Message from './components/Message/Message';
+import Register from './pages/Register/Register';
 
 class App extends Component {
     componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
                     <Switch>
                         <PrivateRoute exact path="/" component={Dashboard} />
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
                     </Switch>
                 </Router>
             </Provider>

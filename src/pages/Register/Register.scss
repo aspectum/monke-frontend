@@ -1,0 +1,69 @@
+.register {
+    background-color: #1b1f35;
+    width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+
+    .register-text {
+        font-size: 20px;
+        font-weight: 800;
+        margin: 20px;
+    }
+
+    .form-register {
+        display: grid;
+        grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr;
+        width: 80%;
+        margin: 20px;
+        font-size: 1rem;
+
+        .btn-register {
+            background-color: rgb(20, 57, 180);
+            color: #ccc;
+            border: 0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            width: 40%;
+            margin: 0 auto;
+            grid-row: 10 / span 1;
+
+            &:hover {
+                background-color: rgb(51, 80, 175);
+            }
+        }
+
+        #register-username-label,
+        #register-email-label,
+        #register-pw-label {
+            align-self: center;
+            justify-self: left;
+        }
+
+        #register-username-label {
+            grid-row: 1 / span 1;
+        }
+
+        #register-username {
+            grid-row: 2 / span 1;
+        }
+
+        #register-email-label {
+            grid-row: 4 / span 1;
+        }
+
+        #register-email {
+            grid-row: 5 / span 1;
+        }
+
+        #register-pw-label {
+            grid-row: 7 / span 1;
+        }
+
+        #register-pw {
+            grid-row: 8 / span 1;
+        }
+    }
+}
