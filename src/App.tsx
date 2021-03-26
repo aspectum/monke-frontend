@@ -6,7 +6,7 @@ import './App.scss';
 import dispatchFromStore from './helpers/dispatchFromStore';
 import store from './store';
 import PrivateRoute from './components/PrivateRoute';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Message from './components/Message/Message';
 
