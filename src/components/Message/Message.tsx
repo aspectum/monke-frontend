@@ -1,3 +1,5 @@
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeMessage } from '../../actions/messageActions';
@@ -24,10 +26,7 @@ function Message(): ReactElement {
                 <span id="message-title">
                     {msgState.messageType === MessageTypes.Error ? 'ERROR' : 'SUCCESS'}
                 </span>
-                <span id="close-message" onClick={onClick}>
-                    X
-                </span>{' '}
-                {/* // TODO: use fontawesome icon later */}
+                <FontAwesomeIcon icon={faTimesCircle} id="close-message" onClick={onClick} />
             </div>
             <div className="messages">
                 {msgState.messages.map((msg) => (
