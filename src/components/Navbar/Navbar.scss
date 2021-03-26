@@ -1,0 +1,22 @@
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: hsl(234, 24%, 13%);
+    flex-shrink: 0;
+    display: flex;
+    /* position: relative; */
+    align-items: center;
+
+    .logo {
+        /* TODO hack */
+        position: absolute;
+        margin: 20px auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logged-user {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+}
