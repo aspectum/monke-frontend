@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */ // don't want to escape that apostrophe
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -27,6 +28,9 @@ function Login(): ReactElement {
                 <TextInput type="password" id="login-pw" name="password" label="Password: " />
                 <ButtonSubmit className="btn-login" text="Login" />
             </CustomForm>
+            <div className="to-register">
+                {`Don't have an account?`} <a href="/register">Register</a>
+            </div>
         </div>
     );
 }

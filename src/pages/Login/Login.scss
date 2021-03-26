@@ -57,4 +57,17 @@
             grid-row: 5 / span 1;
         }
     }
+
+    .to-register {
+        margin: 10px auto 30px;
+
+        a {
+            text-decoration: none;
+            color: rgb(50, 50, 206);
+
+            &:hover {
+                color: rgb(118, 118, 255);
+            }
+        }
+    }
 }

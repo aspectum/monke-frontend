@@ -34,6 +34,9 @@ function Register(): ReactElement {
                 <TextInput type="password" id="register-pw" name="password" label="Password: " />
                 <ButtonSubmit className="btn-register" text="Register" />
             </CustomForm>
+            <div className="to-login">
+                Already have an account? <a href="/login">Login</a>
+            </div>
         </div>
     );
 }
