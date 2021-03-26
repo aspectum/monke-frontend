@@ -8,6 +8,7 @@ import store from './store';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Message from './components/Message/Message';
 
 class App extends Component {
     componentDidMount() {
@@ -18,6 +19,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Router>
+                    <Message />
                     <Switch>
                         <PrivateRoute exact path="/" component={Dashboard} />
                         <Route exact path="/login" component={Login} />

@@ -1,0 +1,61 @@
+$success-accent-color: green;
+$error-accent-color: red;
+
+.message-box {
+    background-color: #151723;
+    z-index: 99;
+    width: 300px;
+    position: fixed;
+    top: 10%;
+    left: -50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--accent-color);
+
+    transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    // transition: all 500ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+    &.showing {
+        left: 50%;
+        // transform: translateX(-50%);
+    }
+
+    &.error {
+        --accent-color: #{$error-accent-color};
+    }
+
+    &.success {
+        --accent-color: #{$success-accent-color};
+    }
+
+    .message-header {
+        display: flex;
+        align-items: center;
+
+        #message-title {
+            position: absolute;
+            margin: 20px auto;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 1000;
+            color: var(--accent-color);
+        }
+
+        #close-message {
+            margin-left: auto;
+            color: var(--accent-color);
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .messages {
+        .bullet {
+            color: var(--accent-color);
+        }
+    }
+}
