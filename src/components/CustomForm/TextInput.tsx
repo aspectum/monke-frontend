@@ -5,12 +5,20 @@ type AcceptedTypes = 'text' | 'password' | 'email' | 'number' | 'tel';
 export interface TextInputProps {
     id: string;
     type: AcceptedTypes;
+    name?: string;
     value?: string;
     label: string;
     onChange?: (id: string, value: string) => void;
 }
 
-export function TextInput({ id, type, label, value = '', onChange }: TextInputProps): ReactElement {
+export function TextInput({
+    id,
+    type,
+    label,
+    value = '',
+    onChange,
+    name,
+}: TextInputProps): ReactElement {
     const [state, setState] = useState(value);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!onChange) {
@@ -27,7 +35,7 @@ export function TextInput({ id, type, label, value = '', onChange }: TextInputPr
             <label htmlFor={id} id={labelId}>
                 {label}
             </label>
-            <input type={type} id={id} onChange={handleChange} value={state} />
+            <input type={type} id={id} name={name} onChange={handleChange} value={state} />
         </>
     );
 }
