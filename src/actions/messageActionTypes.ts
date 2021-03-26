@@ -3,6 +3,11 @@ export const MESSAGE_SUCCESS = 'MESSAGE_SUCCESS';
 export const MESSAGE_TIMEOUT = 'MESSAGE_TIMEOUT';
 export const MESSAGE_CLOSE = 'MESSAGE_CLOSE';
 
+export enum MessageTypes {
+    Error = 'error',
+    Success = 'success',
+}
+
 export interface MessageError {
     type: typeof MESSAGE_ERROR;
     payload: string[];

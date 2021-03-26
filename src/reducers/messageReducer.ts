@@ -1,5 +1,6 @@
 import {
     MessageDispatchTypes,
+    MessageTypes,
     MESSAGE_CLOSE,
     MESSAGE_ERROR,
     MESSAGE_SUCCESS,
@@ -8,14 +9,14 @@ import {
 
 interface MessageState {
     showMessage: boolean;
-    message: string[];
-    messageType: 'error' | 'success';
+    messages: string[];
+    messageType: MessageTypes; // https://stackoverflow.com/questions/26855423/how-to-require-a-specific-string-in-typescript-interface/45801281#45801281
 }
 
 const initialState: MessageState = {
     showMessage: false,
-    message: [],
-    messageType: 'success',
+    messages: [''],
+    messageType: MessageTypes.Success,
 };
 
 export default (state = initialState, action: MessageDispatchTypes) => {
@@ -24,15 +25,15 @@ export default (state = initialState, action: MessageDispatchTypes) => {
             return {
                 ...state,
                 showMessage: true,
-                message: action.payload,
-                messageType: 'error',
+                messages: action.payload,
+                messageType: MessageTypes.Error,
             };
         case MESSAGE_SUCCESS:
             return {
                 ...state,
                 showMessage: true,
-                message: action.payload,
-                messageType: 'success',
+                messages: action.payload,
+                messageType: MessageTypes.Success,
             };
         case MESSAGE_TIMEOUT:
         case MESSAGE_CLOSE:
