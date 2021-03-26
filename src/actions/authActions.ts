@@ -8,6 +8,7 @@ import {
     AUTH_VERIFIED,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    AUTH_SIGN_OUT,
 } from './authActionTypes';
 import { showErrorMessage, showSuccessMessage } from './messageActions';
 
@@ -69,4 +70,11 @@ export const register = (username: string, email: string, password: string) => (
             dispatch(showErrorMessage(messages) as any);
             console.log(messages);
         });
+};
+
+// SIGN OUT
+export const signOut = () => (dispatch: AppDispatch) => {
+    // Request Body
+    dispatch({ type: AUTH_SIGN_OUT });
+    dispatch(showSuccessMessage(['User signed out']) as any);
 };

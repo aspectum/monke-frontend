@@ -4,6 +4,7 @@ export const AUTH_CHECKING = 'AUTH_CHECKING';
 export const AUTH_VERIFIED = 'AUTH_VERIFIED';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const AUTH_SIGN_OUT = 'AUTH_SIGN_OUT';
 
 export interface UserData {
     id: string;
@@ -41,10 +42,15 @@ export interface RegisterFail {
     type: typeof REGISTER_FAIL;
 }
 
+export interface AuthSignOut {
+    type: typeof AUTH_SIGN_OUT;
+}
+
 export type AuthDispatchTypes =
     | AuthSuccess
     | AuthFail
     | AuthChecking
     | AuthVerified
     | RegisterSucess
-    | RegisterFail;
+    | RegisterFail
+    | AuthSignOut;

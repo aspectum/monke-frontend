@@ -2,6 +2,7 @@ import {
     AuthDispatchTypes,
     AUTH_CHECKING,
     AUTH_FAIL,
+    AUTH_SIGN_OUT,
     AUTH_SUCCESS,
     AUTH_VERIFIED,
     REGISTER_SUCCESS,
@@ -40,6 +41,7 @@ export default (state = initialState, action: AuthDispatchTypes) => {
                 },
                 justRegistered: false,
             };
+        case AUTH_SIGN_OUT:
         case AUTH_FAIL:
             localStorage.removeItem('token');
             return {
