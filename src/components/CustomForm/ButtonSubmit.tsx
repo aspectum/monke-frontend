@@ -6,12 +6,10 @@ interface Props {
     className?: string;
 }
 
-function ButtonSubmit({ text, className = '' }: Props): ReactElement {
+export function ButtonSubmit({ text, className = '' }: Props): ReactElement {
     return (
         <button className={className} type="submit">
             {text}
         </button>
     );
 }
-
-export default ButtonSubmit;

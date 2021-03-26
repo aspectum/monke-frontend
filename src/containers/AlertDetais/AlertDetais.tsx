@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteAlert, editAlert } from '../../actions/alertActions';
-import ButtonSubmit from '../../components/CustomForm/ButtonSubmit';
-import CustomForm from '../../components/CustomForm/CustomForm';
-import TextInput from '../../components/CustomForm/TextInput';
+import { ButtonSubmit, CustomForm, TextInput } from '../../components/CustomForm';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
 import dateFormatter from '../../helpers/dateFormatter';
 import { RootState } from '../../store';

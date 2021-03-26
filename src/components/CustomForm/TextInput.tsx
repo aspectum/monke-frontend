@@ -7,7 +7,7 @@ export interface TextInputProps {
     onChange?: (id: string, value: string) => void;
 }
 
-function TextInput({ id, label, value = '', onChange }: TextInputProps): ReactElement {
+export function TextInput({ id, label, value = '', onChange }: TextInputProps): ReactElement {
     const [state, setState] = useState(value);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!onChange) {
@@ -28,5 +28,3 @@ function TextInput({ id, label, value = '', onChange }: TextInputProps): ReactEl
         </>
     );
 }
-
-export default TextInput;

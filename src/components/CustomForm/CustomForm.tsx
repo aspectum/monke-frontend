@@ -16,7 +16,7 @@ type State = {
     fields: Object;
 };
 
-class CustomForm extends Component<Props, State> {
+export class CustomForm extends Component<Props, State> {
     state: any = {
         renderedChildren: [],
         fields: {},
@@ -64,5 +64,3 @@ class CustomForm extends Component<Props, State> {
         return <div>test</div>;
     }
 }
-
-export default CustomForm;

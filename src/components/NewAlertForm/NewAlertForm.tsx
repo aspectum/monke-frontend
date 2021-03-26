@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewAlert } from '../../actions/alertActions';
-import ButtonSubmit from '../CustomForm/ButtonSubmit';
-import CustomForm from '../CustomForm/CustomForm';
-import TextInput from '../CustomForm/TextInput';
+import { ButtonSubmit, CustomForm, TextInput } from '../CustomForm';
 import './NewAlertForm.scss';
 
 function NewAlertForm(): ReactElement {
