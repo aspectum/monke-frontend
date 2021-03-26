@@ -61,9 +61,15 @@ function AlertDetais(): ReactElement {
                     </h2>
                 </div>
                 <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
-                    <TextInput id="ea-title" label="Title: " value={alert.product.title} />
+                    <TextInput
+                        type="text"
+                        id="ea-title"
+                        label="Title: "
+                        value={alert.product.title}
+                    />
                     <TextInput
                         id="ea-price"
+                        type="text"
                         label="Target price: "
                         value={alert.targetPrice.toString()}
                     />

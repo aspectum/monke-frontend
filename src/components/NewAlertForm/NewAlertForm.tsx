@@ -13,8 +13,8 @@ function NewAlertForm(): ReactElement {
 
     return (
         <CustomForm className="form-new-alert" onSubmit={onSubmit}>
-            <TextInput id="na-url" label="Amazon URL:" />
-            <TextInput id="na-price" label="Target Price:" />
+            <TextInput type="text" id="na-url" label="Amazon URL:" />
+            <TextInput type="text" id="na-price" label="Target Price:" />
             <ButtonSubmit className="btn-add-alert" text="Add Alert" />
         </CustomForm>
     );
