@@ -2,6 +2,7 @@ import axios from '../helpers/apiClient';
 import { AppDispatch } from '../store';
 
 import { AUTH_SUCCESS, AUTH_FAIL, AUTH_CHECKING, AUTH_VERIFIED } from './authActionTypes';
+import { showErrorMessage } from './messageActions';
 
 // VERIFY IF USER IS AUTHENTICATED
 export const verifyUser = () => (dispatch: AppDispatch) => {
@@ -26,6 +27,11 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
         .then((res) => dispatch({ type: AUTH_SUCCESS, payload: res.data }))
         .catch((err) => {
             dispatch({ type: AUTH_FAIL });
-            console.log(err);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };

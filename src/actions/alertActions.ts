@@ -18,6 +18,7 @@ import {
     ALERT_DELETE_LOADING,
     ALERT_DELETE_SUCCESS,
 } from './alertActionTypes';
+import { showErrorMessage, showSuccessMessage } from './messageActions';
 import { hideNewAlertModal } from './modalActions';
 
 const alertDetailsQuery = `
@@ -62,7 +63,12 @@ export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
         .then((res) => dispatch({ type: ALERT_ALL_SUCCESS, payload: res.data.data.getAlerts }))
         .catch((err) => {
             dispatch({ type: ALERT_ALL_FAILURE });
-            console.log(err);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };
 
@@ -91,7 +97,12 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
         )
         .catch((err) => {
             dispatch({ type: ALERT_DETAILS_FAILURE });
-            console.log(err);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };
 
@@ -119,10 +130,21 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
         .then((res) => {
             dispatch({ type: ALERT_CREATE_SUCCESS, payload: res.data.data.createAlert });
             dispatch(hideNewAlertModal() as any);
+            dispatch(
+                showSuccessMessage([
+                    `Alert for ${res.data.data.createAlert.product.title} created successfully`,
+                ]) as any
+            );
         }) // TODO: Dispatch close modal
         .catch((err) => {
             dispatch({ type: ALERT_CREATE_FAILURE });
-            console.log(err);
+            dispatch(hideNewAlertModal() as any);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };
 
@@ -147,10 +169,22 @@ export const editAlert = (id: string, newPrice: number) => (dispatch: AppDispatc
 
     axios
         .post('/graphql/', body)
-        .then((res) => dispatch({ type: ALERT_EDIT_SUCCESS, payload: res.data.data.editAlert })) // TODO: Dispatch close modal
+        .then((res) => {
+            dispatch({ type: ALERT_EDIT_SUCCESS, payload: res.data.data.editAlert });
+            dispatch(
+                showSuccessMessage([
+                    `Alert for ${res.data.data.editAlert.product.title} edited successfully`,
+                ]) as any
+            );
+        })
         .catch((err) => {
             dispatch({ type: ALERT_EDIT_FAILURE });
-            console.log(err);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };
 
@@ -174,9 +208,21 @@ export const deleteAlert = (id: string) => (dispatch: AppDispatch) => {
 
     axios
         .post('/graphql/', body)
-        .then((res) => dispatch({ type: ALERT_DELETE_SUCCESS, payload: res.data.data.deleteAlert })) // TODO: Dispatch close modal
+        .then((res) => {
+            dispatch({ type: ALERT_DELETE_SUCCESS, payload: res.data.data.deleteAlert });
+            dispatch(
+                showSuccessMessage([
+                    `Alert for ${res.data.data.deleteAlert.product.title} deleted successfully`,
+                ]) as any
+            );
+        })
         .catch((err) => {
             dispatch({ type: ALERT_DELETE_FAILURE });
-            console.log(err);
+            let messages = ['Unknown error occurred'];
+            if (err.response) {
+                messages = err.response.data.errors.map((e: any) => e.message as string);
+            }
+            dispatch(showErrorMessage(messages) as any);
+            console.log(messages);
         });
 };
