@@ -15,7 +15,7 @@ interface MessageState {
 
 const initialState: MessageState = {
     showMessage: false,
-    messages: [''],
+    messages: [],
     messageType: MessageTypes.Success,
 };
 
