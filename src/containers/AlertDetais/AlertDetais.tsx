@@ -16,7 +16,7 @@ function AlertDetais(): ReactElement {
     }));
 
     const onSubmit = (fields: any) => {
-        dispatch(editAlert(state.alert!.id, +fields['ea-price']));
+        dispatch(editAlert(state.alert!.id, fields['ea-title'], +fields['ea-price']));
     };
 
     const deleteBtnOnClick = () => {
@@ -46,7 +46,7 @@ function AlertDetais(): ReactElement {
             </div>
         );
     }
-    const lowestPrice = alert.product.priceHistory[0];
+    const lowestPrice = alert.product.lowestPrice;
     return (
         <div className="alert-details">
             <div className="price-history-graph">
@@ -61,12 +61,7 @@ function AlertDetais(): ReactElement {
                     </h2>
                 </div>
                 <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
-                    <TextInput
-                        type="text"
-                        id="ea-title"
-                        label="Title: "
-                        value={alert.product.title}
-                    />
+                    <TextInput type="text" id="ea-title" label="Title: " value={alert.title} />
                     <TextInput
                         id="ea-price"
                         type="text"

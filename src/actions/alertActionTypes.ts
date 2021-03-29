@@ -24,8 +24,10 @@ interface ProductData {
 
 export interface AlertData {
     id: string;
+    title: string;
     targetPrice: number;
     product: ProductData;
+    wasNotified: boolean;
 }
 
 export interface PriceData {
@@ -35,6 +37,7 @@ export interface PriceData {
 
 interface ProductDetailedData extends ProductData {
     priceHistory: PriceData[];
+    lowestPrice: PriceData;
 }
 
 export interface AlertDetailedData extends Omit<AlertData, 'product'> {

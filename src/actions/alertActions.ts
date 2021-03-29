@@ -22,19 +22,25 @@ import { showErrorMessage, showSuccessMessage } from './messageActions';
 import { hideNewAlertModal } from './modalActions';
 
 const alertDetailsQuery = `
-id
-targetPrice
-product {
-    ASIN
-    url
+    id
+    targetPrice
     title
-    imageUrl
-    currency
-    priceHistory {
-        price
-        date
-    }
-}`;
+    wasNotified
+    product {
+        ASIN
+        url
+        title
+        imageUrl
+        currency
+        priceHistory {
+            price
+            date
+        }
+        lowestPrice {
+            price
+            date
+        }
+    }`;
 
 // GET ALL USER ALERTS
 export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
@@ -45,6 +51,8 @@ export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
             {
                 getAlerts {
                     id
+                    title
+                    wasNotified
                     targetPrice
                     product {
                         url
@@ -149,13 +157,15 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
 };
 
 // EDIT ALERT
-export const editAlert = (id: string, newPrice: number) => (dispatch: AppDispatch) => {
+export const editAlert = (id: string, newTitle: string, newPrice: number) => (
+    dispatch: AppDispatch
+) => {
     dispatch({ type: ALERT_EDIT_LOADING });
 
     const graphqlQuery = {
         query: `
-            mutation editAlert($id: ID!, $newPrice: Float) {
-                editAlert(id: $id, newPrice: $newPrice) {
+            mutation editAlert($id: ID!, $newPrice: Float, $newTitle: String) {
+                editAlert(id: $id, newPrice: $newPrice, newTitle: $newTitle) {
                     ${alertDetailsQuery}
                 }
             }
@@ -163,6 +173,7 @@ export const editAlert = (id: string, newPrice: number) => (dispatch: AppDispatc
         variables: {
             id,
             newPrice,
+            newTitle,
         },
     };
     const body = JSON.stringify(graphqlQuery);

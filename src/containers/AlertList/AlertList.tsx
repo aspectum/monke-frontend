@@ -73,7 +73,7 @@ class AlertList extends Component<Props, State> {
                         active={selectedAlertId === alert.id}
                         onClick={this.onClick(alert.id)}
                         key={alert.id}
-                        title={alert.product.title}
+                        title={alert.title}
                         targetPrice={alert.targetPrice}
                         imageUrl={alert.product.imageUrl}
                     />
