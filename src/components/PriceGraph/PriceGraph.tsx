@@ -2,12 +2,14 @@ import { ResponsiveLine } from '@nivo/line';
 import React, { ReactElement } from 'react';
 import { PriceData } from '../../actions/alertActionTypes';
 import dateFormatter from '../../helpers/dateFormatter';
+import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 
 // MORE FORMATTING OPTIONS
 // https://nivo.rocks/storybook/?path=/story/line--formatting-axis-values
 
 interface Props {
     priceHistory: PriceData[];
+    currency: string;
 }
 
 function parsePriceHistory(priceHistory: PriceData[]) {
@@ -32,7 +34,8 @@ const nivoTheme = {
     textColor: '#dddddd',
 };
 
-const tooltipFormatter = ({ point }: any) => {
+// eslint-disable-next-line react/display-name
+const tooltipFormatter = (currency: string) => ({ point }: any) => {
     return (
         <div
             style={{
@@ -48,13 +51,14 @@ const tooltipFormatter = ({ point }: any) => {
                 <strong>Date:</strong> {dateFormatter(point.data.x)}
             </span>
             <span>
-                <strong>Price:</strong> {`$ ${point.data.y.toFixed(2)}`}
+                <strong>Price:</strong> {normalizeCurrency(point.data.y, currency).formatted}
+                {/* <strong>Price:</strong> {`$ ${point.data.y.toFixed(2)}`} */}
             </span>
         </div>
     );
 };
 
-function PriceGraph({ priceHistory }: Props): ReactElement {
+function PriceGraph({ priceHistory, currency }: Props): ReactElement {
     const nivoData = parsePriceHistory(priceHistory) as any;
 
     return (
@@ -70,7 +74,7 @@ function PriceGraph({ priceHistory }: Props): ReactElement {
                 // precision: 'auto',
             }}
             // xFormat="time:%Y-%m-%d" // tooltip
-            tooltip={tooltipFormatter}
+            tooltip={tooltipFormatter(currency)}
             // xFormat={dateFormatter} // tooltip
             yScale={{
                 type: 'linear',

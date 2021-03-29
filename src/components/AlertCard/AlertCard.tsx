@@ -4,7 +4,7 @@ import './AlertCard.scss';
 interface Props {
     imageUrl: string;
     title: string;
-    targetPrice: number;
+    targetPrice: string;
     onClick: () => void;
     active: boolean;
 }
@@ -18,7 +18,7 @@ function AlertCard({ imageUrl, title, targetPrice, onClick, active }: Props): Re
             <div className="alert-desc">
                 <span className="alert-title">{title}</span>
                 <span>
-                    Target price: <span className="alert-target-price">$ {targetPrice}</span>
+                    Target price: <span className="alert-target-price">{targetPrice}</span>
                 </span>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAlertDetails, fetchAllAlerts } from '../../actions/alertActions';
 import { AlertData } from '../../actions/alertActionTypes';
 import AlertCard from '../../components/AlertCard/AlertCard';
+import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { RootState } from '../../store';
 import './AlertList.scss';
 
@@ -74,7 +75,9 @@ class AlertList extends Component<Props, State> {
                         onClick={this.onClick(alert.id)}
                         key={alert.id}
                         title={alert.title}
-                        targetPrice={alert.targetPrice}
+                        targetPrice={
+                            normalizeCurrency(alert.targetPrice, alert.product.currency).formatted
+                        }
                         imageUrl={alert.product.imageUrl}
                     />
                 ))}

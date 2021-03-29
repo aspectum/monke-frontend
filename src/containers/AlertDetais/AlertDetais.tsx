@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteAlert, editAlert } from '../../actions/alertActions';
-import { ButtonSubmit, CustomForm, TextInput } from '../../components/CustomForm';
+import { ButtonSubmit, CurrencyInput, CustomForm, TextInput } from '../../components/CustomForm';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
 import dateFormatter from '../../helpers/dateFormatter';
+import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { RootState } from '../../store';
 import './AlertDetais.scss';
 
@@ -54,23 +55,30 @@ function AlertDetais(): ReactElement {
                 <a href={alert.product.url}>Buy now on Amazon</a>
             </div>
             <div className="price-history-graph">
-                <PriceGraph priceHistory={alert.product.priceHistory} />
+                <PriceGraph
+                    priceHistory={alert.product.priceHistory}
+                    currency={alert.product.currency}
+                />
             </div>
             <div className="alert-config">
                 <div className="lowest-price">
                     {/* // TODO: Put actual lowest price and parse correctly values */}
                     <h2>
-                        Lowest Price: $ {lowestPrice.price} in{' '}
+                        Lowest Price:{' '}
+                        {normalizeCurrency(lowestPrice.price, alert.product.currency).formatted} in{' '}
                         {dateFormatter(new Date(+lowestPrice.date))}
                     </h2>
                 </div>
                 <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
                     <TextInput type="text" id="ea-title" label="Title: " value={alert.title} />
-                    <TextInput
+                    <CurrencyInput
                         id="ea-price"
-                        type="text"
                         label="Target price: "
-                        value={alert.targetPrice.toString()}
+                        name="price"
+                        currency={alert.product.currency}
+                        value={
+                            normalizeCurrency(alert.targetPrice, alert.product.currency).formatted
+                        }
                     />
                     <ButtonSubmit className="btn-ea btn-edit-alert" text="Edit" />
                     <button
