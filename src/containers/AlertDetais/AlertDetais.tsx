@@ -49,6 +49,10 @@ function AlertDetais(): ReactElement {
     const lowestPrice = alert.product.lowestPrice;
     return (
         <div className="alert-details">
+            <div className="alert-title">
+                <span className="title">{alert.title}</span>
+                <a href={alert.product.url}>Buy now on Amazon</a>
+            </div>
             <div className="price-history-graph">
                 <PriceGraph priceHistory={alert.product.priceHistory} />
             </div>
