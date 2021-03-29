@@ -5,13 +5,16 @@ import {
     ALERT_ALL_FAILURE,
     ALERT_ALL_LOADING,
     ALERT_ALL_SUCCESS,
+    ALERT_CREATE_FAILURE,
     ALERT_CREATE_LOADING,
     ALERT_CREATE_SUCCESS,
+    ALERT_DELETE_FAILURE,
     ALERT_DELETE_LOADING,
     ALERT_DELETE_SUCCESS,
     ALERT_DETAILS_FAILURE,
     ALERT_DETAILS_LOADING,
     ALERT_DETAILS_SUCCESS,
+    ALERT_EDIT_FAILURE,
     ALERT_EDIT_LOADING,
     ALERT_EDIT_SUCCESS,
 } from '../actions/alertActionTypes';
@@ -58,6 +61,9 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsLoading: false,
                 userAlertsError: true,
             };
+        case ALERT_CREATE_FAILURE:
+        case ALERT_EDIT_FAILURE:
+        case ALERT_DELETE_FAILURE:
         case ALERT_DETAILS_FAILURE:
             return {
                 ...state,
