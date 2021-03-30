@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type AcceptedTypes = 'text' | 'password' | 'email' | 'number' | 'tel';
 
@@ -8,17 +8,29 @@ export interface TextInputProps {
     name?: string;
     value?: string;
     label: string;
-    onChange?: (id: string, value: string) => void;
+    formStateSetter: (id: string, value: string) => void;
 }
 
-export const TextInput = ({ id, type, label, value = '', onChange, name }: TextInputProps) => {
+export const TextInput = ({
+    id,
+    type,
+    label,
+    value = '',
+    formStateSetter,
+    name,
+}: TextInputProps) => {
+    useEffect(() => {
+        formStateSetter(id, value); // Initializing form state
+    }, [id, value, formStateSetter]);
+
     const [state, setState] = useState(value);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!onChange) {
+        if (!formStateSetter) {
             throw new TypeError('Expected parent component <CustomForm>');
         }
         setState(e.target.value);
-        onChange(id, e.target.value);
+        formStateSetter(id, e.target.value);
     };
 
     const labelId = `${id}-label`;

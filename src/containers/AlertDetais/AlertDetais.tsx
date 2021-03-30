@@ -70,24 +70,36 @@ function AlertDetais(): ReactElement {
                     </h2>
                 </div>
                 <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
-                    <TextInput type="text" id="ea-title" label="Title: " value={alert.title} />
-                    <CurrencyInput
-                        id="ea-price"
-                        label="Target price: "
-                        name="price"
-                        currency={alert.product.currency}
-                        value={
-                            normalizeCurrency(alert.targetPrice, alert.product.currency).formatted
-                        }
-                    />
-                    <ButtonSubmit className="btn-ea btn-edit-alert" text="Edit" />
-                    <button
-                        className="btn-ea btn-delete-alert"
-                        type="button"
-                        onClick={deleteBtnOnClick}
-                    >
-                        Delete
-                    </button>
+                    {(formStateSetter: any) => (
+                        <>
+                            <TextInput
+                                type="text"
+                                id="ea-title"
+                                label="Title: "
+                                value={alert.title}
+                                formStateSetter={formStateSetter}
+                            />
+                            <CurrencyInput
+                                id="ea-price"
+                                label="Target price: "
+                                name="price"
+                                currency={alert.product.currency}
+                                value={
+                                    normalizeCurrency(alert.targetPrice, alert.product.currency)
+                                        .formatted
+                                }
+                                formStateSetter={formStateSetter}
+                            />
+                            <ButtonSubmit className="btn-ea btn-edit-alert" text="Edit" />
+                            <button
+                                className="btn-ea btn-delete-alert"
+                                type="button"
+                                onClick={deleteBtnOnClick}
+                            >
+                                Delete
+                            </button>
+                        </>
+                    )}
                 </CustomForm>
             </div>
         </div>

@@ -24,9 +24,25 @@ function Login(): ReactElement {
         <div className="login">
             <div className="login-text">Login</div>
             <CustomForm className="form-login" onSubmit={onSubmit}>
-                <TextInput type="email" id="login-email" name="email" label="E-mail: " />
-                <TextInput type="password" id="login-pw" name="password" label="Password: " />
-                <ButtonSubmit className="btn-login" text="Login" />
+                {(formStateSetter: any) => (
+                    <>
+                        <TextInput
+                            type="email"
+                            id="login-email"
+                            name="email"
+                            label="E-mail: "
+                            formStateSetter={formStateSetter}
+                        />
+                        <TextInput
+                            type="password"
+                            id="login-pw"
+                            name="password"
+                            label="Password: "
+                            formStateSetter={formStateSetter}
+                        />
+                        <ButtonSubmit className="btn-login" text="Login" />
+                    </>
+                )}
             </CustomForm>
             <div className="to-register">
                 {`Don't have an account?`} <a href="/register">Register</a>

@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 
 export interface CurrencyProps {
@@ -7,25 +7,31 @@ export interface CurrencyProps {
     value?: string;
     label: string;
     currency: string;
-    onChange?: (id: string, value: string) => void;
+    formStateSetter: (id: string, value: string) => void;
 }
 
 export function CurrencyInput({
     id,
     label,
     value = '',
-    onChange,
+    formStateSetter,
     name,
     currency,
-}: CurrencyProps): ReactElement {
+}: CurrencyProps) {
+    useEffect(() => {
+        const { text } = normalizeCurrency(value, currency); // Parsing the currency symbol out of there
+        formStateSetter(id, text); // Initializing form state
+    }, [id, value, currency, formStateSetter]);
+
     const [state, setState] = useState(value);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!onChange) {
+        if (!formStateSetter) {
             throw new TypeError('Expected parent component <CustomForm>');
         }
         const { formatted, text } = normalizeCurrency(e.target.value, currency);
         setState(formatted);
-        onChange(id, text);
+        formStateSetter(id, text);
     };
 
     const labelId = `${id}-label`;

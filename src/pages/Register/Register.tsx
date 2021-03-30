@@ -29,10 +29,32 @@ function Register(): ReactElement {
         <div className="register">
             <div className="register-text">Register</div>
             <CustomForm className="form-register" onSubmit={onSubmit}>
-                <TextInput type="text" id="register-username" name="username" label="Username: " />
-                <TextInput type="email" id="register-email" name="email" label="E-mail: " />
-                <TextInput type="password" id="register-pw" name="password" label="Password: " />
-                <ButtonSubmit className="btn-register" text="Register" />
+                {(formStateSetter: any) => (
+                    <>
+                        <TextInput
+                            type="text"
+                            id="register-username"
+                            name="username"
+                            label="Username: "
+                            formStateSetter={formStateSetter}
+                        />
+                        <TextInput
+                            type="email"
+                            id="register-email"
+                            name="email"
+                            label="E-mail: "
+                            formStateSetter={formStateSetter}
+                        />
+                        <TextInput
+                            type="password"
+                            id="register-pw"
+                            name="password"
+                            label="Password: "
+                            formStateSetter={formStateSetter}
+                        />
+                        <ButtonSubmit className="btn-register" text="Register" />
+                    </>
+                )}
             </CustomForm>
             <div className="to-login">
                 Already have an account? <a href="/login">Login</a>
