@@ -3,7 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-bitwise */
 /* eslint-disable no-plusplus */
-export const hashCode = function (s: string) {
+export const hashCode = (s: string) => {
     let h = 0;
     let i = s.length;
     while (i > 0) {
