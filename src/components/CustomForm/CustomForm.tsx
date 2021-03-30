@@ -11,6 +11,11 @@ interface Props {
     className?: string;
 }
 
+interface AdditionalProps {
+    value?: string;
+    onChange?: (id: string, value: string) => void;
+}
+
 type State = {
     renderedChildren: ReactElement[];
     fields: Object;
@@ -28,13 +33,17 @@ export class CustomForm extends Component<Props, State> {
         // Rendering the children
         const renderedChildren = React.Children.map(this.props.children, (child) => {
             if (React.isValidElement(child)) {
-                if ((child.type as React.FunctionComponent).name === 'TextInput') {
-                    fields[child.props.id] = child.props.value || ''; // Saving to store in Form state
+                const additionalProps: AdditionalProps = {};
+                const childName = (child.type as React.FunctionComponent).name;
+                if (childName === 'TextInput' || childName === 'CurrencyInput') {
+                    const childValue = child.props.value || ''; // empty string in case no value was given
+                    fields[child.props.id] = childValue; // Saving to store in Form state
+                    additionalProps.value = childValue;
+                    additionalProps.onChange = this.handleFieldChange;
                 }
                 return React.cloneElement(child, {
                     ...child.props,
-                    value: child.props.value || '', // empty string in case no value was given
-                    onChange: this.handleFieldChange,
+                    ...additionalProps,
                 });
             }
             return child;

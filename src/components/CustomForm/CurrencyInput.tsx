@@ -24,8 +24,8 @@ export function CurrencyInput({
             throw new TypeError('Expected parent component <CustomForm>');
         }
         const { formatted, text } = normalizeCurrency(e.target.value, currency);
-        onChange(id, text);
         setState(formatted);
+        onChange(id, text);
     };
 
     const labelId = `${id}-label`;

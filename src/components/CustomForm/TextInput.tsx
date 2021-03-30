@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 
 type AcceptedTypes = 'text' | 'password' | 'email' | 'number' | 'tel';
 
@@ -11,21 +11,14 @@ export interface TextInputProps {
     onChange?: (id: string, value: string) => void;
 }
 
-export function TextInput({
-    id,
-    type,
-    label,
-    value = '',
-    onChange,
-    name,
-}: TextInputProps): ReactElement {
+export const TextInput = ({ id, type, label, value = '', onChange, name }: TextInputProps) => {
     const [state, setState] = useState(value);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!onChange) {
             throw new TypeError('Expected parent component <CustomForm>');
         }
-        onChange(id, e.target.value);
         setState(e.target.value);
+        onChange(id, e.target.value);
     };
 
     const labelId = `${id}-label`;
@@ -38,4 +31,4 @@ export function TextInput({
             <input type={type} id={id} name={name} onChange={handleChange} value={state} />
         </>
     );
-}
+};
