@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewAlert } from '../../actions/alertActions';
+import { validateAmazonURL } from '../../validators/amazonURLValidator';
 import { ButtonSubmit, CurrencyInput, CustomForm, TextInput } from '../CustomForm';
+import Tooltip from '../Tooltip/Tooltip';
 import './NewAlertForm.scss';
 
 function NewAlertForm() {
+    const [validURL, setState] = useState(true);
     const dispatch = useDispatch();
 
     const onSubmit = (fields: any) => {
-        dispatch(createNewAlert(fields['na-url'], +fields['na-price']));
+        const isValid = validateAmazonURL(fields['na-url']);
+        setState(isValid);
+        if (isValid) {
+            dispatch(createNewAlert(fields['na-url'], +fields['na-price']));
+        }
     };
 
     return (
@@ -22,7 +29,11 @@ function NewAlertForm() {
                             label="Amazon URL:"
                             formStateSetter={formStateSetter}
                         />
-                        {/* <TextInput type="text" id="na-price" label="Target Price:" /> */}
+                        <Tooltip
+                            visible={!validURL}
+                            text="Invalid URL. Are you sure you put an Amazon store link?"
+                            id="na-url-tooltip"
+                        />
                         <CurrencyInput
                             id="na-price"
                             label="Target Price: "
