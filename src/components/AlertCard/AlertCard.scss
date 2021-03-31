@@ -6,6 +6,7 @@
     height: 100% / $n-cards-showing;
     padding: 5px;
     margin: 5px 0;
+    margin-left: 6px; // Accounting for scrollbar width
 
     &.active {
         background-color: hsl(234, 24%, 15%); // TODO
@@ -14,6 +15,7 @@
     .alert-image {
         height: 100%;
         width: 25%;
+        flex-grow: 1;
 
         img {
             height: 100%;
@@ -25,17 +27,18 @@
 
     .alert-desc {
         height: 100%;
-        width: 75%;
+        // width: 75%;
+        width: 120px; // TODO: do this in em
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        // padding: 10px 0;
+        padding: 0 15px;
     }
 
     // span.alert-title {
-    
+
     // }
-    
+
     span.alert-target-price {
         color: $color-target-price;
         font-weight: 900;

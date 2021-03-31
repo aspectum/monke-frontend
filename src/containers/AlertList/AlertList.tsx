@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import { fetchAlertDetails, fetchAllAlerts } from '../../actions/alertActions';
 import { AlertData } from '../../actions/alertActionTypes';
 import AlertCard from '../../components/AlertCard/AlertCard';
@@ -42,6 +43,29 @@ class AlertList extends Component<Props, State> {
         this.props.fetchAlertDetails(alertId);
     };
 
+    renderTrack = ({ style, ...props }: any) => {
+        const trackStyle: React.CSSProperties = {
+            backgroundColor: '#0c091a',
+            position: 'absolute',
+            right: '244px',
+        };
+
+        return (
+            <div
+                style={{ ...style, height: '100%', top: '0', right: '0', ...trackStyle }}
+                {...props}
+            />
+        );
+    };
+
+    renderThumb = ({ style, ...props }: any) => {
+        const thumbStyle: React.CSSProperties = {
+            backgroundColor: '#0d004a',
+        };
+
+        return <div style={{ ...style, ...thumbStyle }} {...props} />;
+    };
+
     render() {
         const { alerts, isLoading, isError } = this.props;
         const { selectedAlertId } = this.state;
@@ -69,18 +93,24 @@ class AlertList extends Component<Props, State> {
         }
         return (
             <div className="alert-list">
-                {alerts!.map((alert) => (
-                    <AlertCard
-                        active={selectedAlertId === alert.id}
-                        onClick={this.onClick(alert.id)}
-                        key={alert.id}
-                        title={alert.title}
-                        targetPrice={
-                            normalizeCurrency(alert.targetPrice, alert.product.currency).formatted
-                        }
-                        imageUrl={alert.product.imageUrl}
-                    />
-                ))}
+                <Scrollbars
+                    renderTrackVertical={this.renderTrack}
+                    renderThumbVertical={this.renderThumb}
+                >
+                    {alerts!.map((alert) => (
+                        <AlertCard
+                            active={selectedAlertId === alert.id}
+                            onClick={this.onClick(alert.id)}
+                            key={alert.id}
+                            title={alert.title}
+                            targetPrice={
+                                normalizeCurrency(alert.targetPrice, alert.product.currency)
+                                    .formatted
+                            }
+                            imageUrl={alert.product.imageUrl}
+                        />
+                    ))}
+                </Scrollbars>
             </div>
         );
     }
