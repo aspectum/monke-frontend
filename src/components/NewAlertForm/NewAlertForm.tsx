@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewAlert } from '../../actions/alertActions';
+import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { validateAmazonURL } from '../../validators/amazonURLValidator';
 import { ButtonSubmit, CurrencyInput, CustomForm, TextInput } from '../CustomForm';
 import Tooltip from '../Tooltip/Tooltip';
@@ -39,6 +40,7 @@ function NewAlertForm() {
                             label="Target Price: "
                             name="price"
                             currency="USD"
+                            value={normalizeCurrency('0.00').formatted}
                             formStateSetter={formStateSetter}
                         />
                         <ButtonSubmit className="btn-add-alert" text="Add Alert" />
