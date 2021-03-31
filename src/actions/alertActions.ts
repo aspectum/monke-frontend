@@ -143,7 +143,7 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
                     `Alert for ${res.data.data.createAlert.product.title} created successfully`,
                 ]) as any
             );
-        }) // TODO: Dispatch close modal
+        })
         .catch((err) => {
             dispatch({ type: ALERT_CREATE_FAILURE });
             dispatch(hideNewAlertModal() as any);

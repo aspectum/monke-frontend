@@ -62,7 +62,6 @@ function AlertDetais(): ReactElement {
             </div>
             <div className="alert-config">
                 <div className="lowest-price">
-                    {/* // TODO: Put actual lowest price and parse correctly values */}
                     <h2>
                         Lowest Price:{' '}
                         {normalizeCurrency(lowestPrice.price, alert.product.currency).formatted} in{' '}
