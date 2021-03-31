@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../actions/authActions';
+import { showErrorMessage } from '../../actions/messageActions';
 import { ButtonSubmit, CustomForm, TextInput } from '../../components/CustomForm';
 import { RootState } from '../../store';
 import './Login.scss';
@@ -13,7 +14,11 @@ function Login(): ReactElement {
 
     // Handles form submission
     const onSubmit = (fields: any) => {
-        dispatch(login(fields['login-email'], fields['login-pw']));
+        if (fields['login-email'].length > 0 && fields['login-pw'].length > 0) {
+            dispatch(login(fields['login-email'], fields['login-pw']));
+        } else {
+            dispatch(showErrorMessage(['Please fill all the fields']));
+        }
     };
 
     // RENDERING
