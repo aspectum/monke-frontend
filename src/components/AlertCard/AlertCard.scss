@@ -4,19 +4,19 @@
 .alert-card {
     display: flex;
     height: 100% / $n-cards-showing;
-    padding: 5px;
-    margin: 5px 0;
+    padding: 10px 5px;
     margin-left: 6px; // Accounting for scrollbar width
 
     &.active {
-        background-color: hsl(234, 24%, 15%); // TODO
+        background-color: $color-primary-0; // TODO
     }
 
     .alert-image {
         height: 100%;
         width: 25%;
-        flex-grow: 1;
+        flex-grow: 1; // grow because the desc will have fixed width
 
+        // Use the available space, but don't go over it
         img {
             height: 100%;
             width: 100%;
@@ -26,21 +26,17 @@
     }
 
     .alert-desc {
-        height: 100%;
-        // width: 75%;
-        width: 120px; // TODO: do this in em
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        height: 100%;
+        // width: 75%;
+        width: 120px; // TODO: do this in em
         padding: 0 15px;
     }
 
-    // span.alert-title {
-
-    // }
-
     span.alert-target-price {
-        color: $color-target-price;
+        color: $color-complement-2;
         font-weight: 900;
     }
 }

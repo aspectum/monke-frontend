@@ -1,10 +1,12 @@
+@import '../../styles/colors';
+
 .access-control {
-    background-color: #1b1f35;
-    width: 500px;
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto; // centering
+    width: 500px;
+    background-color: $color-primary-3;
     border-radius: 40px;
 
     .access-control-title {
@@ -19,10 +21,10 @@
         // Using react-router-dom <Link>, that renders an anchor tag
         a {
             text-decoration: none;
-            color: rgb(50, 50, 206);
+            color: $color-primary-1;
 
             &:hover {
-                color: rgb(118, 118, 255);
+                color: lighten($color-primary-1, $a-lighten-ammount);
             }
         }
     }

@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .form-new-alert {
     display: grid;
     grid-template-rows: 2em 2em 30px 2em 2em 50px auto;
@@ -16,21 +18,21 @@
         grid-row: 7 / span 1;
         justify-self: center;
 
-        position: relative;
-        background-color: rgb(32, 136, 0);
-        color: #fff;
-        font-size: 20px;
         width: 50%;
+        color: #fff; // TODO: use variable
+        font-size: 20px;
         padding: 10px 0;
         border: none;
         border-radius: 10px;
+        background-color: $color-secondary-1-2;
         transition: background-color ease-in-out 0.2s;
 
         &:hover {
-            background-color: rgb(53, 184, 13);
+            background-color: lighten($color-secondary-1-2, $button-lighten-ammount);
         }
 
         &:active {
+            position: relative;
             top: 1px;
         }
     }

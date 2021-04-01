@@ -1,11 +1,12 @@
+@import '../../styles/colors';
+
 .navbar {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
     width: 100%;
     height: 60px;
-    background-color: hsl(234, 24%, 13%);
-    flex-shrink: 0;
-    display: flex;
-    /* position: relative; */
-    align-items: center;
+    background-color: $color-primary-3;
 
     .logo {
         /* TODO hack */

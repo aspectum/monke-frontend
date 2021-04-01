@@ -1,21 +1,24 @@
+@import '../../styles/colors';
+
+$tooltip-color: $color-primary-1;
+
 /* Tooltip text */
 .tooltip {
     visibility: hidden;
+    text-align: center;
     width: 160px;
     height: fit-content;
-    background-color: #555;
+    background-color: $tooltip-color;
     color: #fff;
-    text-align: center;
     padding: 5px 0;
     border-radius: 6px;
 
     /* Position the tooltip text */
     position: relative;
     z-index: 1;
-    // left: 100%;
-    top: 50%;
+    top: 50%; // aligning with input
     transform: translate(0, -50%);
-    margin-left: 5px;
+    margin-left: 5px; // space for arrow
 
     /* Fade in tooltip */
     opacity: 0;
@@ -36,5 +39,5 @@
     margin-top: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent #555 transparent transparent;
+    border-color: transparent $tooltip-color transparent transparent;
 }

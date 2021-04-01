@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .form-login {
     display: grid;
     grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr;
@@ -6,17 +8,23 @@
     font-size: 1rem;
 
     .btn-login {
-        background-color: rgb(20, 57, 180);
-        color: #ccc;
+        grid-row: 7 / span 1;
+
+        width: 40%;
+        margin: 0 auto;
+        background-color: $color-primary-1;
+        color: #fff; // TODO: use variable
         border: 0;
         border-radius: 5px;
         padding: 5px 10px;
-        width: 40%;
-        margin: 0 auto;
-        grid-row: 7 / span 1;
 
         &:hover {
-            background-color: rgb(51, 80, 175);
+            background-color: lighten($color-primary-1, $button-lighten-ammount);
+        }
+
+        &:active {
+            position: relative;
+            top: 1px;
         }
     }
 

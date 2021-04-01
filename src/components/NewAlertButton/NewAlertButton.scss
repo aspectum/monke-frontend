@@ -1,18 +1,19 @@
+@import '../../styles/colors';
+
 .btn-new-alert {
-    background-color: rgb(32, 136, 0);
-    color: #fff;
-    font-size: 20px;
+    position: absolute;
+    bottom: 100%; // putting it above container
     width: 100%;
     padding: 10px 0;
     border: none;
     border-radius: 10px;
-    position: absolute;
-    bottom: 100%;
+    background-color: $color-secondary-1-2;
+    color: #fff; // TODO: use variable
+    font-size: 20px;
     transition: background-color ease-in-out 0.2s;
 
-
     &:hover {
-        background-color: rgb(53, 184, 13);
+        background-color: lighten($color-secondary-1-2, $button-lighten-ammount);
     }
 
     &:active {
