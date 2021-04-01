@@ -1,100 +1,71 @@
-.register {
-    background-color: #1b1f35;
-    width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 40px;
+.form-register {
+    display: grid;
+    // grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr;
+    $oneF: minmax(0, 1fr);
+    $halfF: minmax(0, 0.5fr);
+    grid-template-rows: $oneF $oneF $halfF $oneF $oneF $halfF $oneF $oneF $halfF $oneF $oneF $halfF $oneF;
+    grid-template-columns: 1fr 0; // 0 for the tooltip
+    width: 80%;
+    height: 374px; // 1fr=34px
+    margin: 20px;
+    font-size: 1rem;
 
-    .register-text {
-        font-size: 20px;
-        font-weight: 800;
-        margin: 20px;
-    }
+    .btn-register {
+        background-color: rgb(20, 57, 180);
+        color: #ccc;
+        border: 0;
+        border-radius: 5px;
+        padding: 5px 10px;
+        width: 40%;
+        margin: 0 auto;
+        grid-row: 13 / span 1;
 
-    .form-register {
-        display: grid;
-        // grid-template-rows: 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr;
-        $oneF: minmax(0, 1fr);
-        $halfF: minmax(0, 0.5fr);
-        grid-template-rows: $oneF $oneF $halfF $oneF $oneF $halfF $oneF $oneF $halfF $oneF $oneF $halfF $oneF;
-        grid-template-columns: 1fr 0; // 0 for the tooltip
-        width: 80%;
-        height: 374px; // 1fr=34px
-        margin: 20px;
-        font-size: 1rem;
-
-        .btn-register {
-            background-color: rgb(20, 57, 180);
-            color: #ccc;
-            border: 0;
-            border-radius: 5px;
-            padding: 5px 10px;
-            width: 40%;
-            margin: 0 auto;
-            grid-row: 13 / span 1;
-
-            &:hover {
-                background-color: rgb(51, 80, 175);
-            }
-        }
-
-        #register-username-label,
-        #register-email-label,
-        #register-pw-label,
-        #register-pw-confirm-label {
-            align-self: center;
-            justify-self: left;
-        }
-
-        #register-username-label {
-            grid-row: 1 / span 1;
-        }
-
-        #register-username,
-        #register-username-tooltip {
-            grid-row: 2 / span 1;
-        }
-
-        #register-email-label {
-            grid-row: 4 / span 1;
-        }
-
-        #register-email,
-        #register-email-tooltip {
-            grid-row: 5 / span 1;
-        }
-
-        #register-pw-label {
-            grid-row: 7 / span 1;
-        }
-
-        #register-pw,
-        #register-pw-tooltip {
-            grid-row: 8 / span 1;
-        }
-
-        #register-pw-confirm-label {
-            grid-row: 10 / span 1;
-        }
-
-        #register-pw-confirm,
-        #register-pw-confirm-tooltip {
-            grid-row: 11 / span 1;
+        &:hover {
+            background-color: rgb(51, 80, 175);
         }
     }
 
-    .to-login {
-        margin: 10px auto 30px;
+    #register-username-label,
+    #register-email-label,
+    #register-pw-label,
+    #register-pw-confirm-label {
+        align-self: center;
+        justify-self: left;
+    }
 
-        a {
-            text-decoration: none;
-            color: rgb(50, 50, 206);
+    #register-username-label {
+        grid-row: 1 / span 1;
+    }
 
-            &:hover {
-                color: rgb(118, 118, 255);
-            }
-        }
+    #register-username,
+    #register-username-tooltip {
+        grid-row: 2 / span 1;
+    }
+
+    #register-email-label {
+        grid-row: 4 / span 1;
+    }
+
+    #register-email,
+    #register-email-tooltip {
+        grid-row: 5 / span 1;
+    }
+
+    #register-pw-label {
+        grid-row: 7 / span 1;
+    }
+
+    #register-pw,
+    #register-pw-tooltip {
+        grid-row: 8 / span 1;
+    }
+
+    #register-pw-confirm-label {
+        grid-row: 10 / span 1;
+    }
+
+    #register-pw-confirm,
+    #register-pw-confirm-tooltip {
+        grid-row: 11 / span 1;
     }
 }

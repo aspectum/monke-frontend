@@ -1,9 +1,10 @@
 import React, { ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { register } from '../../actions/authActions';
 import { ButtonSubmit, CustomForm, TextInput } from '../../components/CustomForm';
 import Tooltip from '../../components/Tooltip/Tooltip';
+import AccessControl from '../../containers/AccessControl/AccessControl';
 import { RootState } from '../../store';
 import {
     minPasswordLength,
@@ -15,7 +16,6 @@ import {
 import './Register.scss';
 
 function Register(): ReactElement {
-    const isAuthenticated = useSelector((state: RootState) => state.authReducer.isAuthenticated);
     const justRegistered = useSelector((state: RootState) => state.authReducer.justRegistered);
     const dispatch = useDispatch();
     const [valid, setValid] = useState({ username: true, email: true, pw: true, pwConfirm: true });
@@ -44,74 +44,75 @@ function Register(): ReactElement {
     };
 
     // RENDERING
-    if (isAuthenticated) {
-        return <Redirect to="/" />;
-    }
     if (justRegistered) {
         return <Redirect to="/login" />;
     }
     return (
-        <div className="register">
-            <div className="register-text">Register</div>
-            <CustomForm className="form-register" onSubmit={onSubmit}>
-                {(formStateSetter: any) => (
-                    <>
-                        <TextInput
-                            type="text"
-                            id="register-username"
-                            name="username"
-                            label="Username: "
-                            formStateSetter={formStateSetter}
-                        />
-                        <Tooltip
-                            visible={!valid.username}
-                            text={`Username must not contain any special characters and have at least ${minUsernameLength} characters`}
-                            id="register-username-tooltip"
-                        />
-                        <TextInput
-                            type="email"
-                            id="register-email"
-                            name="email"
-                            label="E-mail: "
-                            formStateSetter={formStateSetter}
-                        />
-                        <Tooltip
-                            visible={!valid.email}
-                            text="Insert a valid e-mail"
-                            id="register-email-tooltip"
-                        />
-                        <TextInput
-                            type="password"
-                            id="register-pw"
-                            name="password"
-                            label="Password: "
-                            formStateSetter={formStateSetter}
-                        />
-                        <Tooltip
-                            visible={!valid.pw}
-                            text={`Your password must have at least ${minPasswordLength} characters`}
-                            id="register-pw-tooltip"
-                        />
-                        <TextInput
-                            type="password"
-                            id="register-pw-confirm"
-                            name="password-confirm"
-                            label="Password confirmation: "
-                            formStateSetter={formStateSetter}
-                        />
-                        <Tooltip
-                            visible={!valid.pwConfirm}
-                            text="Confirmation must be equal to password"
-                            id="register-pw-confirm-tooltip"
-                        />
-                        <ButtonSubmit className="btn-register" text="Register" />
-                    </>
-                )}
-            </CustomForm>
-            <div className="to-login">
-                Already have an account? <a href="/login">Login</a>
-            </div>
-        </div>
+        <AccessControl
+            title="Register"
+            form={
+                <CustomForm className="form-register" onSubmit={onSubmit}>
+                    {(formStateSetter: any) => (
+                        <>
+                            <TextInput
+                                type="text"
+                                id="register-username"
+                                name="username"
+                                label="Username: "
+                                formStateSetter={formStateSetter}
+                            />
+                            <Tooltip
+                                visible={!valid.username}
+                                text={`Username must not contain any special characters and have at least ${minUsernameLength} characters`}
+                                id="register-username-tooltip"
+                            />
+                            <TextInput
+                                type="email"
+                                id="register-email"
+                                name="email"
+                                label="E-mail: "
+                                formStateSetter={formStateSetter}
+                            />
+                            <Tooltip
+                                visible={!valid.email}
+                                text="Insert a valid e-mail"
+                                id="register-email-tooltip"
+                            />
+                            <TextInput
+                                type="password"
+                                id="register-pw"
+                                name="password"
+                                label="Password: "
+                                formStateSetter={formStateSetter}
+                            />
+                            <Tooltip
+                                visible={!valid.pw}
+                                text={`Your password must have at least ${minPasswordLength} characters`}
+                                id="register-pw-tooltip"
+                            />
+                            <TextInput
+                                type="password"
+                                id="register-pw-confirm"
+                                name="password-confirm"
+                                label="Password confirmation: "
+                                formStateSetter={formStateSetter}
+                            />
+                            <Tooltip
+                                visible={!valid.pwConfirm}
+                                text="Confirmation must be equal to password"
+                                id="register-pw-confirm-tooltip"
+                            />
+                            <ButtonSubmit className="btn-register" text="Register" />
+                        </>
+                    )}
+                </CustomForm>
+            }
+            redirectText={
+                <span>
+                    Already have an account? <Link to="/login">Login</Link>
+                </span>
+            }
+        />
     );
 }
 
