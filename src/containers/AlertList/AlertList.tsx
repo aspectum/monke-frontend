@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Scrollbars } from 'react-custom-scrollbars-2';
 import { fetchAlertDetails, fetchAllAlerts } from '../../actions/alertActions';
 import { AlertData } from '../../actions/alertActionTypes';
 import AlertCard from '../../components/AlertCard/AlertCard';
+import CustomScrollbar from '../../components/CustomScrollbar/CustomScrollbar';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { RootState } from '../../store';
 import './AlertList.scss';
@@ -43,29 +43,6 @@ class AlertList extends Component<Props, State> {
         this.props.fetchAlertDetails(alertId);
     };
 
-    renderTrack = ({ style, ...props }: any) => {
-        const trackStyle: React.CSSProperties = {
-            backgroundColor: '#0c091a',
-            position: 'absolute',
-            right: '244px',
-        };
-
-        return (
-            <div
-                style={{ ...style, height: '100%', top: '0', right: '0', ...trackStyle }}
-                {...props}
-            />
-        );
-    };
-
-    renderThumb = ({ style, ...props }: any) => {
-        const thumbStyle: React.CSSProperties = {
-            backgroundColor: '#0d004a',
-        };
-
-        return <div style={{ ...style, ...thumbStyle }} {...props} />;
-    };
-
     render() {
         const { alerts, isLoading, isError } = this.props;
         const { selectedAlertId } = this.state;
@@ -93,10 +70,7 @@ class AlertList extends Component<Props, State> {
         }
         return (
             <div className="alert-list">
-                <Scrollbars
-                    renderTrackVertical={this.renderTrack}
-                    renderThumbVertical={this.renderThumb}
-                >
+                <CustomScrollbar>
                     {alerts!.map((alert) => (
                         <AlertCard
                             active={selectedAlertId === alert.id}
@@ -110,7 +84,7 @@ class AlertList extends Component<Props, State> {
                             imageUrl={alert.product.imageUrl}
                         />
                     ))}
-                </Scrollbars>
+                </CustomScrollbar>
             </div>
         );
     }
