@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { PriceData } from '../../actions/alertActionTypes';
 import dateFormatter from '../../helpers/dateFormatter';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
+import { tooltipStyle } from './PriceGraph.style';
 
 // MORE FORMATTING OPTIONS
 // https://nivo.rocks/storybook/?path=/story/line--formatting-axis-values
@@ -37,16 +38,7 @@ const nivoTheme = {
 // eslint-disable-next-line react/display-name
 const tooltipFormatter = (currency: string) => ({ point }: any) => {
     return (
-        <div
-            style={{
-                backgroundColor: 'rgba(21, 23, 35, 0.78)',
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '5px 10px',
-                borderRadius: '5px',
-                color: '#eee',
-            }}
-        >
+        <div style={tooltipStyle}>
             <span>
                 <strong>Date:</strong> {dateFormatter(point.data.x)}
             </span>
