@@ -29,3 +29,40 @@ $color-complement-4: #312c16;
 
 $button-lighten-ammount: 5%;
 $a-lighten-ammount: 25%;
+
+/* ------------------------------------------------------ */
+/* ------------------ COMPONENT COLORS ------------------ */
+/* ------------------------------------------------------ */
+// NAVBAR
+$navbar-background-color: $color-primary-3;
+
+// TOOLTIP
+$tooltip-background-color: $color-primary-1;
+$tooltip-text-color: #fff;
+
+// ACCESS CONTROL (LOGIN/REGISTER)
+$access-ctrl-background-color: $color-primary-3;
+
+// NAVBAR
+$alert-details-background-color: $color-primary-0;
+
+// DASHBOARD
+$dashboard-background-color: $color-primary-4;
+$dashboard-container-color: $color-primary-3; // bg for AlertList
+
+// NAVBAR
+$alert-card-price-color: $color-complement-2;
+
+// MESSAGE
+$message-success-color: $color-secondary-1-2;
+$message-error-color: $color-secondary-2-2;
+$message-background-color: $color-primary-4;
+
+// MODAL
+$modal-window-background-color: $color-primary-3;
+
+/* ---------- BUTTON COLORS ---------- */
+$button-text-color: #fff;
+$button-default-color: $color-primary-1;
+
+$button-new-alert-color: $color-secondary-1-2;

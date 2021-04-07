@@ -1,7 +1,7 @@
 @import '../../styles/colors';
 
-$success-accent-color: $color-secondary-1-2;
-$error-accent-color: $color-secondary-2-2;
+$success-accent-color: $message-success-color;
+$error-accent-color: $message-error-color;
 
 .message-box {
     display: flex;
@@ -13,7 +13,7 @@ $error-accent-color: $color-secondary-2-2;
     left: -50%; // starts outside of view
     width: 300px;
     padding: 10px;
-    background-color: $color-primary-4;
+    background-color: $message-background-color;
     border: 2px solid var(--accent-color);
 
     transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

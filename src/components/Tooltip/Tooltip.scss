@@ -1,6 +1,6 @@
 @import '../../styles/colors';
 
-$tooltip-color: $color-primary-1;
+$tooltip-color: $tooltip-background-color;
 
 /* Tooltip text */
 .tooltip {
@@ -9,7 +9,7 @@ $tooltip-color: $color-primary-1;
     width: 160px;
     height: fit-content;
     background-color: $tooltip-color;
-    color: #fff;
+    color: $tooltip-text-color;
     padding: 5px 0;
     border-radius: 6px;
 

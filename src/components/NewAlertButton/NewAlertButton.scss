@@ -17,6 +17,8 @@
     }
 
     &:active {
+        position: absolute;
         bottom: calc(100% - 1px);
+        top: unset;
     }
 }

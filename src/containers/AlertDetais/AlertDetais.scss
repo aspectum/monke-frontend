@@ -5,10 +5,10 @@
     flex-direction: column;
     flex-shrink: 1; // the sidebar has fixed width
     height: 100%;
-    width: 80%;
+    width: 100%; // it's shrinking, so fill available space
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: $color-primary-0;
+    background-color: $alert-details-background-color;
 
     .alert-title {
         display: flex;
