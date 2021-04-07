@@ -6,9 +6,12 @@
     height: 100% / $n-cards-showing;
     padding: 10px 5px;
     margin-left: 6px; // Accounting for scrollbar width
+    border-right: 1px solid #fff;
 
     &.active {
         background-color: $color-primary-0; // TODO
+        border: 1px solid #fff;
+        border-right: none;
     }
 
     .alert-image {
