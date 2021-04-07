@@ -16,7 +16,7 @@ export default function Navbar(): ReactElement {
 
     return (
         <nav className="navbar">
-            <span className="logo">Logo</span>
+            <span className="logo">monke</span>
             <span className="logged-user">Welcome, {username}</span>
             <FontAwesomeIcon icon={faSignOutAlt} className="icon-sign-out" onClick={onClick} />
         </nav>
