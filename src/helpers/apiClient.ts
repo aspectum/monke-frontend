@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '../store';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Adds Auth header to appropriate requests and references API URL
 // https://github.com/axios/axios#interceptors
