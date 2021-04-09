@@ -4,6 +4,7 @@ import { createNewAlert } from '../../actions/alertActions';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { validateAmazonURL } from '../../validators/amazonURLValidator';
 import { ButtonSubmit, CurrencyInput, CustomForm, TextInput } from '../CustomForm';
+import SpinnerButton from '../SpinnerButton/SpinnerButton';
 import Tooltip from '../Tooltip/Tooltip';
 import './NewAlertForm.scss';
 
@@ -47,6 +48,7 @@ function NewAlertForm() {
                     </>
                 )}
             </CustomForm>
+            <SpinnerButton loading text="lala" />
         </>
     );
 }
