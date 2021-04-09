@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { verifyUser } from './actions/authActions';
 import './App.scss';
+import PrivateRoute from './containers/PrivateRoute';
+import Message from './containers/Message/Message';
 import dispatchFromStore from './helpers/dispatchFromStore';
-import store from './store';
-import PrivateRoute from './components/PrivateRoute';
-import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
-import Message from './components/Message/Message';
+import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import store from './store';
 
 class App extends Component {
     componentDidMount() {
