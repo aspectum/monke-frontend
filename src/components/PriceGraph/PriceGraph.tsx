@@ -3,33 +3,19 @@ import React, { ReactElement } from 'react';
 import { PriceData } from '../../actions/alertActionTypes';
 import dateFormatter from '../../helpers/dateFormatter';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
-import { tooltipStyle } from './PriceGraph.style';
+import { parsePriceHistory } from '../../helpers/parsePriceHistory';
 
 // MORE FORMATTING OPTIONS
 // https://nivo.rocks/storybook/?path=/story/line--formatting-axis-values
 
-interface Props {
-    priceHistory: PriceData[];
-    currency: string;
-}
-
-function parsePriceHistory(priceHistory: PriceData[]) {
-    const graphData: any[] = []; // The any type doesn't matter too much because I couldn't make nivo typing work
-
-    priceHistory.forEach((priceData) => {
-        graphData.push({
-            x: new Date(+priceData.date), // Maybe should parse this on the backend (when sending to client)
-            y: priceData.price, // toFixed(2) ?
-        });
-    });
-
-    return [
-        {
-            id: 'Price',
-            data: graphData,
-        },
-    ];
-}
+const tooltipStyle: React.CSSProperties = {
+    backgroundColor: 'rgba(21, 23, 35, 0.78)',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '5px 10px',
+    borderRadius: '5px',
+    color: '#eee',
+};
 
 const nivoTheme = {
     textColor: '#dddddd',
@@ -49,6 +35,11 @@ const tooltipFormatter = (currency: string) => ({ point }: any) => {
         </div>
     );
 };
+
+interface Props {
+    priceHistory: PriceData[];
+    currency: string;
+}
 
 function PriceGraph({ priceHistory, currency }: Props): ReactElement {
     const nivoData = parsePriceHistory(priceHistory) as any;
