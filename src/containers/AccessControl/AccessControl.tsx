@@ -1,8 +1,34 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import { RootState } from '../../store';
-import './AccessControl.scss';
+import { accessCtrlBackgroundColor } from '../../styles/colors';
+
+const AccessControlWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto; // centering
+    width: 500px;
+    background-color: ${accessCtrlBackgroundColor};
+    border-radius: 40px;
+`;
+
+const AccessControlTitle = styled.div`
+    font-size: 20px;
+    font-weight: 800;
+    margin: 20px;
+`;
+
+const AccessControlRedirectText = styled.div`
+    margin: 10px auto 30px;
+
+    // Using react-router-dom <Link>, that renders an anchor tag
+    a {
+        text-decoration: none;
+    }
+`;
 
 interface Props {
     title: string;
@@ -10,7 +36,7 @@ interface Props {
     redirectText: ReactElement;
 }
 
-function AccessControl({ title, form, redirectText }: Props): ReactElement {
+const AccessControl = ({ title, form, redirectText }: Props): ReactElement => {
     const isAuthenticated = useSelector((state: RootState) => state.authReducer.isAuthenticated);
 
     // RENDERING
@@ -18,12 +44,12 @@ function AccessControl({ title, form, redirectText }: Props): ReactElement {
         return <Redirect to="/" />;
     }
     return (
-        <div className="access-control">
-            <div className="access-control-title">{title}</div>
+        <AccessControlWrapper>
+            <AccessControlTitle>{title}</AccessControlTitle>
             {form}
-            <div className="access-control-redirect-text">{redirectText}</div>
-        </div>
+            <AccessControlRedirectText>{redirectText}</AccessControlRedirectText>
+        </AccessControlWrapper>
     );
-}
+};
 
 export default AccessControl;
