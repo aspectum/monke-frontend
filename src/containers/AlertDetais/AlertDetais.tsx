@@ -29,7 +29,7 @@ function AlertDetais(): ReactElement {
     if (isLoading) {
         return (
             <div className="alert-details">
-                <div style={{ margin: 'auto' }}>Loading</div>
+                <div style={{ margin: 'auto' }}>Loading...</div>
             </div>
         );
     }
