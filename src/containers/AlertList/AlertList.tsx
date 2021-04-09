@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { fetchAlertDetails, fetchAllAlerts } from '../../actions/alertActions';
 import { AlertData } from '../../actions/alertActionTypes';
 import AlertCard from '../../components/AlertCard/AlertCard';
 import CustomScrollbar from '../../components/CustomScrollbar/CustomScrollbar';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { RootState } from '../../store';
-import './AlertList.scss';
+
+const AlertListWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    z-index: 2;
+`;
 
 interface Props {
     alerts: AlertData[];
@@ -16,6 +24,7 @@ interface Props {
     fetchAllAlerts: () => void;
     fetchAlertDetails: (id: string) => void;
 }
+
 interface State {
     selectedAlertId: string | undefined;
 }
@@ -69,7 +78,7 @@ class AlertList extends Component<Props, State> {
             );
         }
         return (
-            <div className="alert-list">
+            <AlertListWrapper>
                 <CustomScrollbar>
                     {alerts!.map((alert) => (
                         <AlertCard
@@ -85,7 +94,7 @@ class AlertList extends Component<Props, State> {
                         />
                     ))}
                 </CustomScrollbar>
-            </div>
+            </AlertListWrapper>
         );
     }
 }
