@@ -46,12 +46,12 @@ interface Props {
     visible?: boolean;
 }
 
-function Tooltip({ text, id, visible = false }: Props): ReactElement {
+const Tooltip = ({ text, id, visible = false }: Props): ReactElement => {
     return (
         <TooltipComponent visible={visible} id={id}>
             {text}
         </TooltipComponent>
     );
-}
+};
 
 export default Tooltip;

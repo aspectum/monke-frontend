@@ -41,7 +41,7 @@ interface Props {
     currency: string;
 }
 
-function PriceGraph({ priceHistory, currency }: Props): ReactElement {
+const PriceGraph = ({ priceHistory, currency }: Props): ReactElement => {
     const nivoData = parsePriceHistory(priceHistory) as any;
 
     return (
@@ -123,6 +123,6 @@ function PriceGraph({ priceHistory, currency }: Props): ReactElement {
             // ]}
         />
     );
-}
+};
 
 export default PriceGraph;

@@ -16,7 +16,7 @@ interface Props {
     children: React.ReactNode;
 }
 
-export default ({ children }: Props): ReactElement => {
+const CustomScrollbar = ({ children }: Props): ReactElement => {
     const renderTrack = ({ style, ...props }: any) => {
         // track needs this style
         const necessaryStyle = {
@@ -37,3 +37,5 @@ export default ({ children }: Props): ReactElement => {
         </Scrollbars>
     );
 };
+
+export default CustomScrollbar;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { alertCardPriceColor, colorPrimary0 } from '../../styles/colors';
 import { numberCardsShowing } from '../../styles/global';
 
-const Card = styled.div`
+const Card = styled.div<{ active: boolean }>`
     display: flex;
     height: calc(100% / ${numberCardsShowing});
     padding: 10px 5px;
@@ -58,7 +58,7 @@ interface Props {
     active: boolean;
 }
 
-export default ({ imageUrl, title, targetPrice, onClick, active }: Props): ReactElement => (
+const AlertCard = ({ imageUrl, title, targetPrice, onClick, active }: Props): ReactElement => (
     <Card active={active} onClick={onClick}>
         <AlertImage>
             <img src={imageUrl} alt="" />
@@ -71,3 +71,5 @@ export default ({ imageUrl, title, targetPrice, onClick, active }: Props): React
         </AlertDescription>
     </Card>
 );
+
+export default AlertCard;
