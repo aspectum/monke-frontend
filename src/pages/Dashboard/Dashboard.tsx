@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import Modal from '../../components/Modal/Modal';
-import Navbar from '../../components/Navbar/Navbar';
+import Modal from '../../containers/Modal/Modal';
+import Navbar from '../../containers/Navbar/Navbar';
 import NewAlertButton from '../../components/NewAlertButton/NewAlertButton';
 import NewAlertForm from '../../components/NewAlertForm/NewAlertForm';
 import AlertDetais from '../../containers/AlertDetais/AlertDetais';
