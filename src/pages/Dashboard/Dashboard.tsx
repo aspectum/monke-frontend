@@ -17,6 +17,7 @@ function Dashboard(): ReactElement {
                         <div className="container">
                             <div className="side-bar">
                                 <NewAlertButton />
+                                <div className="border-underlay" />
                                 <AlertList />
                             </div>
                             <AlertDetais />

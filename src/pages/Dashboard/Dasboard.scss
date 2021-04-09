@@ -23,6 +23,18 @@
             width: 250px;
             position: relative;
             flex-shrink: 0;
+
+            .border-underlay {
+                position: absolute;
+
+                width: 100%;
+                height: 100%;
+
+                box-sizing: border-box;
+                border-right: 1px solid #fff;
+
+                z-index: 1;
+            }
         }
     }
 }
