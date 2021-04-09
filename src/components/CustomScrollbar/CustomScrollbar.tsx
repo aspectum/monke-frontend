@@ -1,12 +1,22 @@
 import React, { ReactElement } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import { thumbStyle, trackStyle } from './CustomScrollbar.style';
+import { color1 } from '../../styles/colors';
+
+const trackStyle: React.CSSProperties = {
+    backgroundColor: '#000',
+    position: 'absolute',
+    right: '244px',
+};
+
+const thumbStyle: React.CSSProperties = {
+    backgroundColor: color1,
+};
 
 interface Props {
     children: React.ReactNode;
 }
 
-function CustomScrollbar({ children }: Props): ReactElement {
+export default ({ children }: Props): ReactElement => {
     const renderTrack = ({ style, ...props }: any) => {
         // track needs this style
         const necessaryStyle = {
@@ -26,6 +36,4 @@ function CustomScrollbar({ children }: Props): ReactElement {
             {children}
         </Scrollbars>
     );
-}
-
-export default CustomScrollbar;
+};
