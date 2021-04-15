@@ -9,7 +9,7 @@ interface TooltipComponentProps {
 const TooltipComponent = styled.div<TooltipComponentProps>`
     visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
     text-align: center;
-    width: 160px;
+    min-width: 160px;
     height: fit-content;
     background-color: ${tooltipBackgroundColor};
     color: ${tooltipTextColor};
