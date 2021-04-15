@@ -111,35 +111,3 @@ function NewAlertForm() {
 }
 
 export default NewAlertForm;
-
-// return (
-//     <>
-//         <CustomForm className="form-new-alert" onSubmit={onSubmit}>
-//             {(formStateSetter: any) => (
-//                 <>
-//                     <TextInput
-//                         type="text"
-//                         id="na-url"
-//                         label="Amazon URL:"
-//                         formStateSetter={formStateSetter}
-//                     />
-//                     <Tooltip
-//                         visible={!validURL}
-//                         text="Invalid URL. Are you sure you put an Amazon store link?"
-//                         id="na-url-tooltip"
-//                     />
-//                     <CurrencyInput
-//                         id="na-price"
-//                         label="Target Price: "
-//                         name="price"
-//                         currency="USD"
-//                         value={normalizeCurrency('0.00').formatted}
-//                         formStateSetter={formStateSetter}
-//                     />
-//                     <ButtonSubmit className="btn-add-alert" text="Add Alert" />
-//                 </>
-//             )}
-//         </CustomForm>
-//         <SpinnerButton loading text="lala" />
-//     </>
-// );
