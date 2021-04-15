@@ -5,7 +5,7 @@ export type GridItemProps =
     | { GridRow: React.CSSProperties['gridRow'] }
     | { GridCol: React.CSSProperties['gridColumn'] };
 
-export default styled.div<GridItemProps>`
+export const GridItem = styled.div<GridItemProps>`
     display: flex;
     ${({ GridRow }: any) => (GridRow ? `grid-row: ${GridRow};` : '')}
     ${({ GridCol }: any) => (GridCol ? `grid-column: ${GridCol};` : '')}

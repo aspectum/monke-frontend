@@ -16,7 +16,7 @@ interface GridWrapperWithCols extends GridWrapperBasics {
 
 export type GridWrapperProps = GridWrapperWithRows | GridWrapperWithCols;
 
-export default styled.div<GridWrapperProps>`
+export const GridWrapper = styled.div<GridWrapperProps>`
     display: grid;
     ${({ TemplateRows }: any) => (TemplateRows ? `grid-template-rows: ${TemplateRows};` : '')}
     ${({ TemplateCols }: any) => (TemplateCols ? `grid-template-columns: ${TemplateCols};` : '')}

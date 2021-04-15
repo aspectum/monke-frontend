@@ -7,8 +7,7 @@ import { validateAmazonURL } from '../../validators/amazonURLValidator';
 import { ButtonSubmit, CustomForm } from '../CustomForm';
 import { CurrencyInput } from '../CustomForm/CurrencyInputPure';
 import { TextInput } from '../CustomForm/TextInputPure';
-import GridItem from '../Grid/GridItem';
-import GridWrapper from '../Grid/GridWrapper';
+import { GridItem, GridWrapper } from '../Grid';
 import SpinnerButton from '../SpinnerButton/SpinnerButton';
 import Tooltip from '../Tooltip/Tooltip';
 
