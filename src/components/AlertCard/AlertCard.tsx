@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { alertCardPriceColor, colorPrimary0 } from '../../styles/colors';
-import { numberCardsShowing } from '../../styles/global';
+import { numberCardsShowing } from '../../styles/config';
 
 const Card = styled.div<{ active: boolean }>`
     display: flex;
