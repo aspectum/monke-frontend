@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 import { tooltipBackgroundColor, tooltipTextColor } from '../../styles/colors';
 
 interface TooltipComponentProps {
@@ -42,13 +42,13 @@ const TooltipComponent = styled.div<TooltipComponentProps>`
 
 interface Props {
     text: string;
-    id: string;
+    style?: CSSProperties;
     visible?: boolean;
 }
 
-const Tooltip = ({ text, id, visible = false }: Props): ReactElement => {
+const Tooltip = ({ text, style, visible = false }: Props): ReactElement => {
     return (
-        <TooltipComponent visible={visible} id={id}>
+        <TooltipComponent visible={visible} style={style}>
             {text}
         </TooltipComponent>
     );

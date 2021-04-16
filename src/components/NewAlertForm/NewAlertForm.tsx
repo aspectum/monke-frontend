@@ -83,7 +83,6 @@ function NewAlertForm() {
                                 <Tooltip
                                     visible={!validURL}
                                     text="Invalid URL. Are you sure you put an Amazon store link?"
-                                    id="na-url-tooltip"
                                 />
                             </GridItem>
                             <GridItem GridRow="4 / span 1">

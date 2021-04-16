@@ -97,7 +97,6 @@ function Register(): ReactElement {
                                     <Tooltip
                                         visible={!valid.username}
                                         text={`Username must not contain any special characters and have at least ${minUsernameLength} characters`}
-                                        id="register-username-tooltip"
                                     />
                                 </GridItem>
                                 <GridItem GridRow="4 / span 1">
@@ -112,11 +111,7 @@ function Register(): ReactElement {
                                     />
                                 </GridItem>
                                 <GridItem GridRow="5 / span 1">
-                                    <Tooltip
-                                        visible={!valid.email}
-                                        text="Insert a valid e-mail"
-                                        id="register-email-tooltip"
-                                    />
+                                    <Tooltip visible={!valid.email} text="Insert a valid e-mail" />
                                 </GridItem>
                                 <GridItem GridRow="7 / span 1">
                                     <label htmlFor="na-url">Password: </label>
@@ -133,7 +128,6 @@ function Register(): ReactElement {
                                     <Tooltip
                                         visible={!valid.pw}
                                         text={`Your password must have at least ${minPasswordLength} characters`}
-                                        id="register-pw-tooltip"
                                     />
                                 </GridItem>
                                 <GridItem GridRow="10 / span 1">
@@ -151,7 +145,6 @@ function Register(): ReactElement {
                                     <Tooltip
                                         visible={!valid.pwConfirm}
                                         text="Confirmation must be equal to password"
-                                        id="register-pw-confirm-tooltip"
                                     />
                                 </GridItem>
                                 <GridItem GridRow="13 / span 1">
