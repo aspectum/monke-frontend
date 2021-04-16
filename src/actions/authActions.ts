@@ -9,6 +9,8 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     AUTH_SIGN_OUT,
+    LOGIN_LOADING,
+    REGISTER_LOADING,
 } from './authActionTypes';
 import { showErrorMessage, showSuccessMessage } from './messageActions';
 
@@ -27,6 +29,8 @@ export const verifyUser = () => (dispatch: AppDispatch) => {
 
 // LOGIN
 export const login = (email: string, password: string) => (dispatch: AppDispatch) => {
+    dispatch({ type: LOGIN_LOADING });
+
     // Request Body
     const body = JSON.stringify({ email, password });
 
@@ -48,6 +52,8 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
 export const register = (username: string, email: string, password: string) => (
     dispatch: AppDispatch
 ) => {
+    dispatch({ type: REGISTER_LOADING });
+
     // Request Body
     const body = JSON.stringify({ username, email, password });
 

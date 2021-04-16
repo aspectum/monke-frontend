@@ -6,7 +6,10 @@ import {
     AUTH_SUCCESS,
     AUTH_VERIFIED,
     REGISTER_SUCCESS,
+    LOGIN_LOADING,
+    REGISTER_LOADING,
     UserData,
+    REGISTER_FAIL,
 } from '../actions/authActionTypes';
 
 interface AuthState {
@@ -15,6 +18,8 @@ interface AuthState {
     token: string | null;
     user: UserData | null;
     justRegistered: boolean;
+    loginLoading: boolean;
+    registerLoading: boolean;
 }
 
 const initialState: AuthState = {
@@ -23,6 +28,8 @@ const initialState: AuthState = {
     token: localStorage.getItem('token'),
     user: null,
     justRegistered: false,
+    loginLoading: false,
+    registerLoading: false,
 };
 
 export default (state = initialState, action: AuthDispatchTypes) => {
@@ -40,6 +47,7 @@ export default (state = initialState, action: AuthDispatchTypes) => {
                     email: action.payload.email,
                 },
                 justRegistered: false,
+                loginLoading: false,
             };
         case AUTH_SIGN_OUT:
         case AUTH_FAIL:
@@ -51,6 +59,7 @@ export default (state = initialState, action: AuthDispatchTypes) => {
                 token: null,
                 user: null,
                 justRegistered: false,
+                loginLoading: false,
             };
         case AUTH_CHECKING:
             return {
@@ -73,6 +82,22 @@ export default (state = initialState, action: AuthDispatchTypes) => {
             return {
                 ...state,
                 justRegistered: true,
+                registerLoading: false,
+            };
+        case REGISTER_FAIL:
+            return {
+                ...state,
+                registerLoading: false,
+            };
+        case LOGIN_LOADING:
+            return {
+                ...state,
+                loginLoading: true,
+            };
+        case REGISTER_LOADING:
+            return {
+                ...state,
+                registerLoading: true,
             };
         default:
             return state;

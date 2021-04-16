@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { register } from '../../actions/authActions';
-import { ButtonSubmit, CustomForm } from '../../components/CustomForm';
+import { CustomForm } from '../../components/CustomForm';
 import { TextInput } from '../../components/CustomForm/TextInputPure';
 import { GridItem, GridWrapper } from '../../components/Grid';
+import SpinnerButton from '../../components/SpinnerButton/SpinnerButton';
 import Tooltip from '../../components/Tooltip/Tooltip';
 import AccessControl from '../../containers/AccessControl/AccessControl';
 import { RootState } from '../../store';
+import { color1 } from '../../styles/colors';
 import {
     minPasswordLength,
     minUsernameLength,
@@ -33,12 +35,15 @@ const GridForm = styled(GridWrapper)`
     }
 `;
 
-const Center = styled.div`
+const CenterBtn = styled.div`
     margin: 0 auto;
+    position: relative;
+    display: contents;
 `;
 
 function Register(): ReactElement {
     const justRegistered = useSelector((state: RootState) => state.authReducer.justRegistered);
+    const loading = useSelector((state: RootState) => state.authReducer.registerLoading);
     const dispatch = useDispatch();
     const [valid, setValid] = useState({ username: true, email: true, pw: true, pwConfirm: true });
 
@@ -148,9 +153,17 @@ function Register(): ReactElement {
                                     />
                                 </GridItem>
                                 <GridItem GridRow="13 / span 1">
-                                    <Center>
-                                        <ButtonSubmit className="btn-register" text="Register" />
-                                    </Center>
+                                    <CenterBtn>
+                                        <SpinnerButton
+                                            bgColor={color1}
+                                            style={{
+                                                width: '30%',
+                                            }}
+                                            type="submit"
+                                            loading={loading}
+                                            text="Register"
+                                        />
+                                    </CenterBtn>
                                 </GridItem>
                             </GridForm>
                         </>

@@ -1,7 +1,7 @@
 import { desaturate } from 'polished';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { buttonDesaturateAmount, colorSecondary12 } from '../../styles/colors';
+import { buttonDesaturateAmount } from '../../styles/colors';
 import Button from '../Button/Button';
 import Spinner from '../Spinner/Spinner';
 // import './SpinnerButton.scss';
@@ -27,19 +27,39 @@ const SpinnerButtonLoading = styled(SpinnerButtonDefault)`
 interface Props {
     text: string;
     loading: boolean;
+    bgColor: string;
+    style?: React.CSSProperties;
+    onClick?: (args: any) => any;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-function SpinnerButton({ text, loading }: Props): ReactElement {
-    const [state, setstate] = useState(loading);
-    if (state) {
+function SpinnerButton({
+    text,
+    loading,
+    onClick,
+    type = 'button',
+    bgColor,
+    style,
+}: Props): ReactElement {
+    if (loading) {
         return (
-            <SpinnerButtonLoading bgColor={colorSecondary12} onClick={() => setstate(!state)}>
+            <SpinnerButtonLoading
+                style={style}
+                type={type}
+                bgColor={bgColor}
+                onClick={onClick || (() => {})}
+            >
                 <Spinner type="ThreeDots" width={60} height={10} />
             </SpinnerButtonLoading>
         );
     }
     return (
-        <SpinnerButtonDefault bgColor={colorSecondary12} onClick={() => setstate(!state)}>
+        <SpinnerButtonDefault
+            style={style}
+            type={type}
+            bgColor={bgColor}
+            onClick={onClick || (() => {})}
+        >
             {text}
         </SpinnerButtonDefault>
     );

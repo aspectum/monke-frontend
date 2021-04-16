@@ -2,15 +2,17 @@ import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { deleteAlert, editAlert } from '../../actions/alertActions';
-import { ButtonSubmit, CustomForm } from '../../components/CustomForm';
+// import Button from '../../components/Button/Button';
+import { CustomForm } from '../../components/CustomForm';
 import { CurrencyInput } from '../../components/CustomForm/CurrencyInputPure';
 import { TextInput } from '../../components/CustomForm/TextInputPure';
 import { GridItem, GridWrapper } from '../../components/Grid';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
+import SpinnerButton from '../../components/SpinnerButton/SpinnerButton';
 import dateFormatter from '../../helpers/dateFormatter';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
 import { RootState } from '../../store';
-import { alertDetailsBackgroundColor } from '../../styles/colors';
+import { alertDetailsBackgroundColor, color1, colorSecondary22 } from '../../styles/colors';
 
 const AlertDetailsWrapper = styled.div`
     display: flex;
@@ -54,6 +56,10 @@ const LowestPrice = styled.div`
     margin: auto;
 `;
 
+// const Btn = styled(Button)`
+//     width: 100%;
+// `;
+
 // TODO
 const GridForm = styled(GridWrapper)`
     font-size: 0.9rem;
@@ -95,37 +101,43 @@ function AlertDetais(): ReactElement {
         alert: store.alertReducer.selectedAlert,
         isLoading: store.alertReducer.selectedAlertLoading,
         isError: store.alertReducer.selectedAlertError,
+        editLoading: store.alertReducer.alertEditLoading,
+        deleteLoading: store.alertReducer.alertDeleteLoading,
     }));
 
     const onSubmit = (fields: any) => {
-        dispatch(editAlert(state.alert!.id, fields['ea-title'], +fields['ea-price']));
+        if (!state.editLoading) {
+            dispatch(editAlert(state.alert!.id, fields['ea-title'], +fields['ea-price']));
+        }
     };
 
     const deleteBtnOnClick = () => {
-        dispatch(deleteAlert(state.alert!.id));
+        if (!state.deleteLoading) {
+            dispatch(deleteAlert(state.alert!.id));
+        }
     };
 
     // RENDERING
-    const { alert, isLoading, isError } = state;
+    const { alert, isLoading, isError, editLoading, deleteLoading } = state;
     if (isLoading) {
         return (
-            <div className="alert-details">
+            <AlertDetailsWrapper>
                 <div style={{ margin: 'auto' }}>Loading...</div>
-            </div>
+            </AlertDetailsWrapper>
         );
     }
     if (isError) {
         return (
-            <div className="alert-details">
+            <AlertDetailsWrapper>
                 <div style={{ margin: 'auto' }}>Error</div>
-            </div>
+            </AlertDetailsWrapper>
         );
     }
     if (!alert) {
         return (
-            <div className="alert-details">
+            <AlertDetailsWrapper>
                 <div style={{ margin: 'auto' }}>No alert selected</div>
-            </div>
+            </AlertDetailsWrapper>
         );
     }
     const lowestPrice = alert.product.lowestPrice;
@@ -186,16 +198,41 @@ function AlertDetais(): ReactElement {
                                     />
                                 </GridItem>
                                 <GridItem GridRow="1 / span 1" GridCol="3 / span 1">
-                                    <ButtonSubmit className="btn-ea btn-edit-alert" text="Edit" />
+                                    {/* <Btn bgColor={color1} type="submit">
+                                        Edit
+                                    </Btn> */}
+                                    <SpinnerButton
+                                        bgColor={color1}
+                                        style={{
+                                            width: '100%',
+                                            padding: '5px 10px',
+                                            borderRadius: '5px',
+                                        }}
+                                        type="submit"
+                                        loading={editLoading}
+                                        text="Edit"
+                                    />
                                 </GridItem>
                                 <GridItem GridRow="3 / span 1" GridCol="3 / span 1">
-                                    <button
-                                        className="btn-ea btn-delete-alert"
+                                    {/* <Btn
                                         type="button"
+                                        bgColor={colorSecondary22}
                                         onClick={deleteBtnOnClick}
                                     >
                                         Delete
-                                    </button>
+                                    </Btn> */}
+                                    <SpinnerButton
+                                        bgColor={colorSecondary22}
+                                        style={{
+                                            width: '100%',
+                                            padding: '5px 10px',
+                                            borderRadius: '5px',
+                                        }}
+                                        type="button"
+                                        loading={deleteLoading}
+                                        onClick={deleteBtnOnClick}
+                                        text="Delete"
+                                    />
                                 </GridItem>
                             </GridForm>
                         </>

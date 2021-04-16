@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { createNewAlert } from '../../actions/alertActions';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
+import { RootState } from '../../store';
+import { colorSecondary12 } from '../../styles/colors';
 import { validateAmazonURL } from '../../validators/amazonURLValidator';
-import { ButtonSubmit, CustomForm } from '../CustomForm';
+import { CustomForm } from '../CustomForm';
 import { CurrencyInput } from '../CustomForm/CurrencyInputPure';
 import { TextInput } from '../CustomForm/TextInputPure';
 import { GridItem, GridWrapper } from '../Grid';
@@ -49,13 +51,16 @@ const GridForm = styled(GridWrapper)`
 
 function NewAlertForm() {
     const [validURL, setState] = useState(true);
+    const loading = useSelector((state: RootState) => state.alertReducer.alertCreateLoading);
     const dispatch = useDispatch();
 
     const onSubmit = (fields: any) => {
-        const isValid = validateAmazonURL(fields['na-url']);
-        setState(isValid);
-        if (isValid) {
-            dispatch(createNewAlert(fields['na-url'], +fields['na-price']));
+        if (!loading) {
+            const isValid = validateAmazonURL(fields['na-url']);
+            setState(isValid);
+            if (isValid) {
+                dispatch(createNewAlert(fields['na-url'], +fields['na-price']));
+            }
         }
     };
 
@@ -98,13 +103,17 @@ function NewAlertForm() {
                                 />
                             </GridItem>
                             <GridItem GridRow="7 / span 1">
-                                <ButtonSubmit className="btn-add-alert" text="Add Alert" />
+                                <SpinnerButton
+                                    bgColor={colorSecondary12}
+                                    type="submit"
+                                    loading={loading}
+                                    text="Add Alert"
+                                />
                             </GridItem>
                         </GridForm>
                     </>
                 )}
             </CustomForm>
-            <SpinnerButton loading text="lala" />
         </>
     );
 }

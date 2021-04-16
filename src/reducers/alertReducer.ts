@@ -26,6 +26,9 @@ interface AlertState {
     selectedAlertLoading: boolean;
     userAlertsError: boolean;
     selectedAlertError: boolean;
+    alertCreateLoading: boolean;
+    alertEditLoading: boolean;
+    alertDeleteLoading: boolean;
 }
 
 const initialState: AlertState = {
@@ -35,6 +38,9 @@ const initialState: AlertState = {
     selectedAlertLoading: false,
     userAlertsError: false,
     selectedAlertError: false,
+    alertCreateLoading: false,
+    alertEditLoading: false,
+    alertDeleteLoading: false,
 };
 
 export default (state = initialState, action: AlertDispatchTypes) => {
@@ -46,8 +52,22 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 userAlertsError: false,
             };
         case ALERT_CREATE_LOADING: // TODO: do this properly
+            return {
+                ...state,
+                alertCreateLoading: true,
+                selectedAlertLoading: true,
+                selectedAlertError: false,
+            };
         case ALERT_EDIT_LOADING: // TODO: do this properly
+            return {
+                ...state,
+                alertEditLoading: true,
+            };
         case ALERT_DELETE_LOADING: // TODO: do this properly
+            return {
+                ...state,
+                alertDeleteLoading: true,
+            };
         case ALERT_DETAILS_LOADING:
             return {
                 ...state,
@@ -70,6 +90,9 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 selectedAlert: undefined,
                 selectedAlertLoading: false,
                 selectedAlertError: true,
+                alertCreateLoading: false,
+                alertEditLoading: false,
+                alertDeleteLoading: false,
             };
         case ALERT_ALL_SUCCESS:
             return {
@@ -91,6 +114,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 selectedAlert: undefined,
                 selectedAlertLoading: false,
                 selectedAlertError: false,
+                alertDeleteLoading: false,
             };
         }
         // TODO: do this properly
@@ -111,6 +135,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 selectedAlert: action.payload,
                 selectedAlertLoading: false,
                 selectedAlertError: false,
+                alertEditLoading: false,
             };
         }
         case ALERT_CREATE_SUCCESS: // TODO: do this properly
@@ -120,6 +145,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
                 selectedAlert: action.payload,
                 selectedAlertLoading: false,
                 selectedAlertError: false,
+                alertCreateLoading: false,
             };
         case ALERT_DETAILS_SUCCESS:
             return {

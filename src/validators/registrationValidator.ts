@@ -1,7 +1,7 @@
 export const minPasswordLength = 8;
 export const minUsernameLength = 4;
 export const validatePassword = (pw: string) => {
-    return pw.length > minPasswordLength;
+    return pw.length >= minPasswordLength;
 };
 
 export const validateEmail = (email: string) => {

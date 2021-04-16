@@ -6,8 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     html {
         height: 100vh;
         color: #ccc;
-        /* font-family: sans-serif; */
         font-family: 'Arial', sans-serif;
+        font-size: 10px
     }
 
     body {
