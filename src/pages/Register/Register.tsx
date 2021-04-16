@@ -1,8 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import { register } from '../../actions/authActions';
-import { ButtonSubmit, CustomForm, TextInput } from '../../components/CustomForm';
+import { ButtonSubmit, CustomForm } from '../../components/CustomForm';
+import { TextInput } from '../../components/CustomForm/TextInputPure';
+import { GridItem, GridWrapper } from '../../components/Grid';
 import Tooltip from '../../components/Tooltip/Tooltip';
 import AccessControl from '../../containers/AccessControl/AccessControl';
 import { RootState } from '../../store';
@@ -13,7 +16,26 @@ import {
     validatePassword,
     validateUsername,
 } from '../../validators/registrationValidator';
-import './Register.scss';
+
+const GridForm = styled(GridWrapper)`
+    margin: 20px auto;
+    font-size: 1rem;
+
+    label {
+        align-self: center;
+    }
+
+    input {
+        width: 100%;
+        border: 0;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+`;
+
+const Center = styled.div`
+    margin: 0 auto;
+`;
 
 function Register(): ReactElement {
     const justRegistered = useSelector((state: RootState) => state.authReducer.justRegistered);
@@ -54,55 +76,90 @@ function Register(): ReactElement {
                 <CustomForm className="form-register" onSubmit={onSubmit}>
                     {(formStateSetter: any) => (
                         <>
-                            <TextInput
-                                type="text"
-                                id="register-username"
-                                name="username"
-                                label="Username: "
-                                formStateSetter={formStateSetter}
-                            />
-                            <Tooltip
-                                visible={!valid.username}
-                                text={`Username must not contain any special characters and have at least ${minUsernameLength} characters`}
-                                id="register-username-tooltip"
-                            />
-                            <TextInput
-                                type="email"
-                                id="register-email"
-                                name="email"
-                                label="E-mail: "
-                                formStateSetter={formStateSetter}
-                            />
-                            <Tooltip
-                                visible={!valid.email}
-                                text="Insert a valid e-mail"
-                                id="register-email-tooltip"
-                            />
-                            <TextInput
-                                type="password"
-                                id="register-pw"
-                                name="password"
-                                label="Password: "
-                                formStateSetter={formStateSetter}
-                            />
-                            <Tooltip
-                                visible={!valid.pw}
-                                text={`Your password must have at least ${minPasswordLength} characters`}
-                                id="register-pw-tooltip"
-                            />
-                            <TextInput
-                                type="password"
-                                id="register-pw-confirm"
-                                name="password-confirm"
-                                label="Password confirmation: "
-                                formStateSetter={formStateSetter}
-                            />
-                            <Tooltip
-                                visible={!valid.pwConfirm}
-                                text="Confirmation must be equal to password"
-                                id="register-pw-confirm-tooltip"
-                            />
-                            <ButtonSubmit className="btn-register" text="Register" />
+                            <GridForm
+                                TemplateRows="repeat(4, minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.5fr)) minmax(0, 1fr)"
+                                TemplateCols="1fr 0"
+                                width="80%"
+                                height="374px" // TODO remove
+                            >
+                                <GridItem GridRow="1 / span 1">
+                                    <label htmlFor="na-url">Username: </label>
+                                </GridItem>
+                                <GridItem GridRow="2 / span 1">
+                                    <TextInput
+                                        type="text"
+                                        id="register-username"
+                                        name="username"
+                                        formStateSetter={formStateSetter}
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="2 / span 1">
+                                    <Tooltip
+                                        visible={!valid.username}
+                                        text={`Username must not contain any special characters and have at least ${minUsernameLength} characters`}
+                                        id="register-username-tooltip"
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="4 / span 1">
+                                    <label htmlFor="na-url">E-mail: </label>
+                                </GridItem>
+                                <GridItem GridRow="5 / span 1">
+                                    <TextInput
+                                        type="email"
+                                        id="register-email"
+                                        name="email"
+                                        formStateSetter={formStateSetter}
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="5 / span 1">
+                                    <Tooltip
+                                        visible={!valid.email}
+                                        text="Insert a valid e-mail"
+                                        id="register-email-tooltip"
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="7 / span 1">
+                                    <label htmlFor="na-url">Password: </label>
+                                </GridItem>
+                                <GridItem GridRow="8 / span 1">
+                                    <TextInput
+                                        type="password"
+                                        id="register-pw"
+                                        name="password"
+                                        formStateSetter={formStateSetter}
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="8 / span 1">
+                                    <Tooltip
+                                        visible={!valid.pw}
+                                        text={`Your password must have at least ${minPasswordLength} characters`}
+                                        id="register-pw-tooltip"
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="10 / span 1">
+                                    <label htmlFor="na-url">Password confirmation: </label>
+                                </GridItem>
+                                <GridItem GridRow="11 / span 1">
+                                    <TextInput
+                                        type="password"
+                                        id="register-pw-confirm"
+                                        name="password-confirm"
+                                        formStateSetter={formStateSetter}
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="11 / span 1">
+                                    <Tooltip
+                                        visible={!valid.pwConfirm}
+                                        text="Confirmation must be equal to password"
+                                        id="register-pw-confirm-tooltip"
+                                    />
+                                </GridItem>
+                                <GridItem GridRow="13 / span 1">
+                                    <Center>
+                                        <ButtonSubmit className="btn-register" text="Register" />
+                                    </Center>
+                                </GridItem>
+                            </GridForm>
                         </>
                     )}
                 </CustomForm>

@@ -30,6 +30,10 @@ const AccessControlRedirectText = styled.div`
     }
 `;
 
+const FormWrapper = styled.div`
+    width: 100%;
+`;
+
 interface Props {
     title: string;
     form: ReactElement;
@@ -46,7 +50,7 @@ const AccessControl = ({ title, form, redirectText }: Props): ReactElement => {
     return (
         <AccessControlWrapper>
             <AccessControlTitle>{title}</AccessControlTitle>
-            {form}
+            <FormWrapper>{form}</FormWrapper>
             <AccessControlRedirectText>{redirectText}</AccessControlRedirectText>
         </AccessControlWrapper>
     );
