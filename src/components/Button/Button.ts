@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import { buttonLightenAmmount } from '../../styles/colors';
+import { buttonLightenAmount } from '../../styles/colors';
 
 interface ButtonProps {
     bgColor: string;
@@ -17,7 +17,7 @@ const Button = styled.button<ButtonProps>`
     transition: background-color ease-in-out 0.2s;
 
     &:hover {
-        background-color: ${({ bgColor }) => lighten(buttonLightenAmmount, bgColor)};
+        background-color: ${({ bgColor }) => lighten(buttonLightenAmount, bgColor)};
     }
 
     &:active {
