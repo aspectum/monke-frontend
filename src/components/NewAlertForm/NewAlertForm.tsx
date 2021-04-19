@@ -15,6 +15,8 @@ import Tooltip from '../Tooltip/Tooltip';
 
 // TODO
 const GridForm = styled(GridWrapper)`
+    font-size: 1.5rem;
+
     label {
         align-self: center;
     }
