@@ -1,7 +1,7 @@
-import { desaturate } from 'polished';
+import { darken } from 'polished';
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { buttonDesaturateAmount } from '../../styles/colors';
+import { buttonDarkenAmount } from '../../styles/colors';
 import Button from '../Button/Button';
 import Spinner from '../Spinner/Spinner';
 // import './SpinnerButton.scss';
@@ -14,13 +14,13 @@ const SpinnerButtonDefault = styled(Button)`
 
 const SpinnerButtonLoading = styled(SpinnerButtonDefault)`
     cursor: wait;
-    background-color: ${({ bgColor }) => desaturate(buttonDesaturateAmount, bgColor)};
+    background-color: ${({ bgColor }) => darken(buttonDarkenAmount, bgColor)};
 
     &:hover,
     &:active {
         position: unset;
         top: unset;
-        background-color: ${({ bgColor }) => desaturate(buttonDesaturateAmount, bgColor)};
+        background-color: ${({ bgColor }) => darken(buttonDarkenAmount, bgColor)};
     }
 `;
 

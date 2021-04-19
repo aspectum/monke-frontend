@@ -30,7 +30,7 @@ export const color1 = '#3111a9';
 // http://paletton.com */
 
 export const buttonLightenAmount = 0.05;
-export const buttonDesaturateAmount = 0.5;
+export const buttonDarkenAmount = 0.15;
 export const aLightenAmmount = 0.25;
 
 /* ------------------------------------------------------ */
