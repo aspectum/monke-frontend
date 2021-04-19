@@ -10,6 +10,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import store from './store';
 import { GlobalStyle } from './styles/GlobalStyle';
+import { FontStyle } from './styles/FontStyle';
 
 class App extends Component {
     componentDidMount() {
@@ -20,6 +21,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <GlobalStyle />
+                <FontStyle />
                 <Router>
                     <Message />
                     <Switch>

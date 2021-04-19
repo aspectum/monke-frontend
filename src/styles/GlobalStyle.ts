@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         overflow: hidden; // There's some x-overflow being caused by nothing, apparently
         color: #ccc;
-        font-family: 'Arial', sans-serif;
         font-size: 10px
     }
 
