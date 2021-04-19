@@ -14,7 +14,7 @@ const NewAlertButtonWrapper = styled.div`
 const NewAlertButtonComponent = styled(Button)`
     padding: 10px 0;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 2rem;
     width: 100%;
 `;
 
