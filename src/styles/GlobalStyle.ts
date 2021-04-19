@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
     // TODO: add separate stye for a, btn
     a {
-        font-size: 15px;
+        /* font-size: 15px; */
         text-decoration: underline;
         color: ${color1};
 
