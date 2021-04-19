@@ -44,11 +44,13 @@ const MessageTitle = styled.span`
     left: 50%;
     margin: 20px auto;
     font-weight: 1000;
+    font-size: 1.8rem;
     color: ${(props) => props.theme.accentColor};
 `;
 
 const MessageClose = styled.span`
     margin-left: auto;
+    font-size: 2rem;
     color: ${(props) => props.theme.accentColor};
 
     &:hover {
@@ -64,6 +66,10 @@ const MessageBullet = styled.span`
 const Message = styled.div`
     display: flex;
     margin: 10px 0;
+`;
+
+const MessageText = styled.div`
+    font-size: 1.5rem;
 `;
 
 export default (): ReactElement => {
@@ -92,7 +98,7 @@ export default (): ReactElement => {
                         <FontAwesomeIcon icon={faTimesCircle} onClick={onClick} />
                     </MessageClose>
                 </MessageHeader>
-                <div>
+                <MessageText>
                     {msgState.messages.map((msg) => (
                         <Message key={hashCode(msg)}>
                             <MessageBullet>
@@ -101,7 +107,7 @@ export default (): ReactElement => {
                             <div>{msg}</div>
                         </Message>
                     ))}
-                </div>
+                </MessageText>
             </MessageBox>
         </ThemeProvider>
     );
