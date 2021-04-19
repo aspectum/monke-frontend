@@ -19,13 +19,6 @@ const GridForm = styled(GridWrapper)`
     label {
         align-self: center;
     }
-
-    input {
-        width: 100%;
-        border: 0;
-        padding: 5px;
-        box-sizing: border-box;
-    }
 `;
 
 const CenterBtn = styled.div`
@@ -68,7 +61,7 @@ function Login(): ReactElement {
                     {(formStateSetter: any) => (
                         <>
                             <GridForm
-                                TemplateRows="repeat(2, 1fr 1fr 0.5fr) 1fr"
+                                TemplateRows="40px 40px 15px 40px 40px 15px 40px"
                                 TemplateCols="1fr 0"
                                 width="80%"
                             >

@@ -75,14 +75,8 @@ const GridForm = styled(GridWrapper)`
 
     input {
         margin: 0 auto;
-        padding: 5px;
-        box-sizing: border-box;
-        text-align: right;
         width: 90%;
-        border: 0;
-        border-radius: 0;
-        background-color: hsl(234, 24%, 17%); // TODO
-        color: #ccc;
+        text-align: right;
     }
 `;
 

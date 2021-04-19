@@ -25,13 +25,6 @@ const GridForm = styled(GridWrapper)`
     label {
         align-self: center;
     }
-
-    input {
-        width: 100%;
-        border: 0;
-        padding: 5px;
-        box-sizing: border-box;
-    }
 `;
 
 const CenterBtn = styled.div`
@@ -81,10 +74,9 @@ function Register(): ReactElement {
                     {(formStateSetter: any) => (
                         <>
                             <GridForm
-                                TemplateRows="repeat(4, minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.5fr)) minmax(0, 1fr)"
+                                TemplateRows="40px 40px 15px 40px 40px 15px 40px 40px 15px 40px 40px 15px 40px"
                                 TemplateCols="1fr 0"
                                 width="80%"
-                                height="374px" // TODO remove
                             >
                                 <GridItem GridRow="1 / span 1">
                                     <label htmlFor="na-url">Username: </label>

@@ -34,4 +34,14 @@ export const GlobalStyle = createGlobalStyle`
             text-decoration: underline;
         }
     }
+
+    input {
+        height: 3rem;
+        width: 100%;
+        border: 0;
+        padding: 5px;
+        box-sizing: border-box;
+        background-color: hsl(234, 24%, 17%); // TODO
+        color: #ccc;
+    }
 `;

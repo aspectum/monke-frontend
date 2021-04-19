@@ -20,13 +20,6 @@ const GridForm = styled(GridWrapper)`
     label {
         align-self: center;
     }
-
-    input {
-        width: 100%;
-        border: 0;
-        padding: 5px;
-        box-sizing: border-box;
-    }
 `;
 
 function NewAlertForm() {
