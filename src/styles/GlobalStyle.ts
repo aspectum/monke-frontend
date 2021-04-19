@@ -27,12 +27,11 @@ export const GlobalStyle = createGlobalStyle`
 
     // TODO: add separate stye for a, btn
     a {
-        /* font-size: 15px; */
-        text-decoration: underline;
-        color: ${color1};
+        text-decoration: none;
+        color: ${lighten(aLightenAmmount, color1)};
 
         &:hover {
-            color: ${lighten(aLightenAmmount, color1)};
+            text-decoration: underline;
         }
     }
 `;
