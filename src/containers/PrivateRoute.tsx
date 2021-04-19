@@ -2,6 +2,7 @@
 import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
+import Spinner from '../components/Spinner/Spinner';
 import { RootState } from '../store';
 
 interface Props extends Omit<RouteProps, 'component'> {
@@ -16,7 +17,11 @@ const PrivateRoute = ({ component: Component, ...rest }: Props): ReactElement =>
             {...rest}
             render={(props) => {
                 if (auth.isLoading) {
-                    return <h2>Loading...</h2>; // TODO: MAKE THIS BETTER
+                    return (
+                        <div style={{ margin: 'auto' }}>
+                            <Spinner width={200} height={200} />
+                        </div>
+                    );
                 }
                 if (!auth.isAuthenticated) {
                     return <Redirect to="/login" />;

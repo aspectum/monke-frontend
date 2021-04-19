@@ -8,6 +8,7 @@ import { CurrencyInput } from '../../components/CustomForm/CurrencyInputPure';
 import { TextInput } from '../../components/CustomForm/TextInputPure';
 import { GridItem, GridWrapper } from '../../components/Grid';
 import PriceGraph from '../../components/PriceGraph/PriceGraph';
+import Spinner from '../../components/Spinner/Spinner';
 import SpinnerButton from '../../components/SpinnerButton/SpinnerButton';
 import dateFormatter from '../../helpers/dateFormatter';
 import { normalizeCurrency } from '../../helpers/normalizeCurrency';
@@ -16,6 +17,7 @@ import { alertDetailsBackgroundColor, color1, colorSecondary22 } from '../../sty
 
 const AlertDetailsWrapper = styled.div`
     display: flex;
+    font-size: 1.5rem;
     flex-direction: column;
     flex-shrink: 1; // the sidebar has fixed width
     height: 100%;
@@ -107,7 +109,9 @@ function AlertDetais(): ReactElement {
     if (isLoading) {
         return (
             <AlertDetailsWrapper>
-                <div style={{ margin: 'auto' }}>Loading...</div>
+                <div style={{ margin: 'auto' }}>
+                    <Spinner width={200} height={200} />
+                </div>
             </AlertDetailsWrapper>
         );
     }
