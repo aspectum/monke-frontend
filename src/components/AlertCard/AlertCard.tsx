@@ -41,8 +41,13 @@ const AlertDescription = styled.div`
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
-    width: 120px; // TODO: do this in em
-    padding: 0 15px;
+    width: 140px; // TODO: do this in em
+    padding: 0 5px 0 10px;
+    font-size: 1.3rem;
+`;
+
+const AlertTitle = styled.span`
+    font-weight: 900;
 `;
 
 const AlertTargetPrice = styled.span`
@@ -64,7 +69,7 @@ const AlertCard = ({ imageUrl, title, targetPrice, onClick, active }: Props): Re
             <img src={imageUrl} alt="" />
         </AlertImage>
         <AlertDescription>
-            <span className="alert-title">{title}</span>
+            <AlertTitle>{title}</AlertTitle>
             <span>
                 Target price: <AlertTargetPrice>{targetPrice}</AlertTargetPrice>
             </span>

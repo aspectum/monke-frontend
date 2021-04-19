@@ -22,7 +22,6 @@ const Container = styled.div`
     height: 80%;
     margin: auto;
     background-color: ${dashboardContainerColor};
-    font-size: 12px; /* TODO */
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 `;
