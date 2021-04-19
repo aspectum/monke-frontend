@@ -21,7 +21,6 @@ import {
 
 const GridForm = styled(GridWrapper)`
     margin: 20px auto;
-    font-size: 1rem;
 
     label {
         align-self: center;

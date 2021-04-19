@@ -16,22 +16,19 @@ const AccessControlWrapper = styled.div`
 `;
 
 const AccessControlTitle = styled.div`
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 800;
     margin: 20px;
 `;
 
 const AccessControlRedirectText = styled.div`
+    font-size: 1.3rem;
     margin: 10px auto 30px;
-
-    // Using react-router-dom <Link>, that renders an anchor tag
-    a {
-        text-decoration: none;
-    }
 `;
 
 const FormWrapper = styled.div`
     width: 100%;
+    font-size: 1.5rem;
 `;
 
 interface Props {
