@@ -76,7 +76,6 @@ export const fetchAllAlerts = () => (dispatch: AppDispatch) => {
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
@@ -110,7 +109,6 @@ export const fetchAlertDetails = (id: string) => (dispatch: AppDispatch) => {
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
@@ -152,7 +150,6 @@ export const createNewAlert = (url: string, targetPrice: number) => (dispatch: A
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
@@ -195,7 +192,6 @@ export const editAlert = (id: string, newTitle: string, newPrice: number) => (
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
@@ -234,6 +230,5 @@ export const deleteAlert = (id: string) => (dispatch: AppDispatch) => {
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };

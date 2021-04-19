@@ -21,9 +21,8 @@ export const verifyUser = () => (dispatch: AppDispatch) => {
     axios
         .get('/auth/')
         .then((res) => dispatch({ type: AUTH_VERIFIED, payload: res.data }))
-        .catch((err) => {
+        .catch(() => {
             dispatch({ type: AUTH_FAIL });
-            console.log(err);
         });
 };
 
@@ -44,7 +43,6 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
@@ -74,7 +72,6 @@ export const register = (username: string, email: string, password: string) => (
                 messages = err.response.data.errors.map((e: any) => e.message as string);
             }
             dispatch(showErrorMessage(messages) as any);
-            console.log(messages);
         });
 };
 
