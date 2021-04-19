@@ -15,10 +15,6 @@ import { color1 } from '../../styles/colors';
 
 const GridForm = styled(GridWrapper)`
     margin: 20px auto;
-
-    label {
-        align-self: center;
-    }
 `;
 
 const CenterBtn = styled.div`

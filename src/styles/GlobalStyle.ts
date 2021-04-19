@@ -44,4 +44,8 @@ export const GlobalStyle = createGlobalStyle`
         background-color: hsl(234, 24%, 17%); // TODO
         color: #ccc;
     }
+
+    label {
+        align-self: center;
+    }
 `;
