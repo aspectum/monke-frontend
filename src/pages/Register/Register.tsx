@@ -78,7 +78,7 @@ function Register(): ReactElement {
         <AccessControl
             title="Register"
             form={
-                <CustomForm className="form-register" onSubmit={onSubmit}>
+                <CustomForm onSubmit={onSubmit}>
                     {(formStateSetter: any) => (
                         <>
                             <GridForm

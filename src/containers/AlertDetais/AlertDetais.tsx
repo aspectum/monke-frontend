@@ -80,19 +80,6 @@ const GridForm = styled(GridWrapper)`
         background-color: hsl(234, 24%, 17%); // TODO
         color: #ccc;
     }
-
-    // TODO
-    .btn-ea {
-        color: #fff; // TODO
-        border: 0;
-        border-radius: 5px;
-        padding: 5px 10px;
-
-        &:active {
-            position: relative;
-            top: 1px;
-        }
-    }
 `;
 
 function AlertDetais(): ReactElement {
@@ -161,7 +148,7 @@ function AlertDetais(): ReactElement {
                         {dateFormatter(new Date(+lowestPrice.date))}
                     </h2>
                 </LowestPrice>
-                <CustomForm className="form-edit-alert" onSubmit={onSubmit}>
+                <CustomForm onSubmit={onSubmit}>
                     {(formStateSetter: any) => (
                         <>
                             <GridForm

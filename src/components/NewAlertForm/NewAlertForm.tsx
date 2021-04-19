@@ -25,28 +25,6 @@ const GridForm = styled(GridWrapper)`
         padding: 5px;
         box-sizing: border-box;
     }
-
-    .btn-add-alert {
-        margin: 0 auto;
-
-        width: 50%;
-        color: #fff; // TODO: use variable
-        font-size: 20px;
-        padding: 10px 0;
-        border: none;
-        border-radius: 10px;
-        background-color: $color-secondary-1-2;
-        transition: background-color ease-in-out 0.2s;
-
-        &:hover {
-            background-color: lighten($color-secondary-1-2, $button-lighten-ammount);
-        }
-
-        &:active {
-            position: relative;
-            top: 1px;
-        }
-    }
 `;
 
 function NewAlertForm() {

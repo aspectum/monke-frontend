@@ -58,21 +58,21 @@ class AlertList extends Component<Props, State> {
         // TODO: proper loading and error handling
         if (isLoading) {
             return (
-                <div className="alert-list">
+                <div>
                     <div style={{ margin: 'auto' }}>Loading</div>
                 </div>
             );
         }
         if (isError) {
             return (
-                <div className="alert-list">
+                <div>
                     <div style={{ margin: 'auto' }}>Error</div>
                 </div>
             );
         }
         if (!alerts[0]) {
             return (
-                <div className="alert-list">
+                <div>
                     <div style={{ margin: 'auto' }}>No alerts</div>
                 </div>
             );

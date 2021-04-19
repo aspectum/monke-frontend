@@ -65,7 +65,7 @@ function Login(): ReactElement {
         <AccessControl
             title="Login"
             form={
-                <CustomForm className="form-login" onSubmit={onSubmit}>
+                <CustomForm onSubmit={onSubmit}>
                     {(formStateSetter: any) => (
                         <>
                             <GridForm
