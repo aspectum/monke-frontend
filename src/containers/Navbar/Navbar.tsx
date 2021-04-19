@@ -14,6 +14,7 @@ const NavContainer = styled.nav`
     width: 100%;
     height: 60px;
     background-color: ${navbarBackgroundColor};
+    font-size: 1.8rem;
 `;
 
 const Logo = styled.span`
@@ -21,6 +22,8 @@ const Logo = styled.span`
     margin: 20px auto;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 2.5rem;
+    font-weight: 700;
 `;
 
 const LoggedUser = styled.span`
