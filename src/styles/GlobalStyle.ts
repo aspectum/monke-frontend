@@ -4,7 +4,9 @@ import { aLightenAmmount, color1, colorPrimary4 } from './colors';
 
 export const GlobalStyle = createGlobalStyle`
     html {
-        height: 100vh;
+        height: 100%;
+        width: 100%;
+        overflow: hidden; // There's some x-overflow being caused by nothing, apparently
         color: #ccc;
         font-family: 'Arial', sans-serif;
         font-size: 10px
