@@ -66,7 +66,7 @@ const LowestPrice = styled.div`
 const GridForm = styled(GridWrapper)`
     max-width: 900px;
     margin: 0 auto;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 
     label {
         align-self: center;
