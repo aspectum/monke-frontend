@@ -25,17 +25,21 @@ const AlertDetailsWrapper = styled.div`
     background-color: ${alertDetailsBackgroundColor};
 `;
 
-const AlertTitle = styled.div`
+const AlertDetailsHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     align-self: center;
     margin: 20px auto;
+`;
 
-    span {
-        font-size: 20px;
-        font-weight: 800;
-    }
+const AlertTitle = styled.div`
+    font-size: 2rem;
+    font-weight: 800;
+`;
+
+const AmazonLink = styled.div`
+    font-size: 1.5rem;
 `;
 
 const PriceHistoryGraphArea = styled.div`
@@ -49,20 +53,20 @@ const AlertConfig = styled.div`
     display: flex;
     flex-direction: column;
     margin: 25px auto 50px;
-    width: 70%;
+    width: 90%;
 `;
 
 const LowestPrice = styled.div`
-    margin: auto;
+    margin: 0px auto 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
 `;
-
-// const Btn = styled(Button)`
-//     width: 100%;
-// `;
 
 // TODO
 const GridForm = styled(GridWrapper)`
-    font-size: 0.9rem;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.3rem;
 
     label {
         align-self: center;
@@ -130,10 +134,12 @@ function AlertDetais(): ReactElement {
     const lowestPrice = alert.product.lowestPrice;
     return (
         <AlertDetailsWrapper>
-            <AlertTitle>
-                <span>{alert.title}</span>
-                <a href={alert.product.url}>Buy now on Amazon</a>
-            </AlertTitle>
+            <AlertDetailsHeader>
+                <AlertTitle>{alert.title}</AlertTitle>
+                <AmazonLink>
+                    <a href={alert.product.url}>Buy now on Amazon</a>
+                </AmazonLink>
+            </AlertDetailsHeader>
             <PriceHistoryGraphArea>
                 <PriceGraph
                     priceHistory={alert.product.priceHistory}
@@ -142,18 +148,16 @@ function AlertDetais(): ReactElement {
             </PriceHistoryGraphArea>
             <AlertConfig>
                 <LowestPrice>
-                    <h2>
-                        Lowest Price:{' '}
-                        {normalizeCurrency(lowestPrice.price, alert.product.currency).formatted} in{' '}
-                        {dateFormatter(new Date(+lowestPrice.date))}
-                    </h2>
+                    Lowest Price:{' '}
+                    {normalizeCurrency(lowestPrice.price, alert.product.currency).formatted} in{' '}
+                    {dateFormatter(new Date(+lowestPrice.date))}
                 </LowestPrice>
                 <CustomForm onSubmit={onSubmit}>
                     {(formStateSetter: any) => (
                         <>
                             <GridForm
                                 TemplateRows="1fr 0.5fr 1fr"
-                                TemplateCols="auto 3fr 0.75fr"
+                                TemplateCols="auto 3fr auto"
                                 width="100%"
                             >
                                 <GridItem GridRow="1 / span 1" GridCol="1 / span 1">
@@ -191,7 +195,7 @@ function AlertDetais(): ReactElement {
                                     <SpinnerButton
                                         bgColor={color1}
                                         style={{
-                                            width: '100%',
+                                            width: '90px',
                                             padding: '5px 10px',
                                             borderRadius: '5px',
                                         }}
@@ -211,7 +215,7 @@ function AlertDetais(): ReactElement {
                                     <SpinnerButton
                                         bgColor={colorSecondary22}
                                         style={{
-                                            width: '100%',
+                                            width: '90px',
                                             padding: '5px 10px',
                                             borderRadius: '5px',
                                         }}
