@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "cd .. && git subtree push --prefix frontend origin frontend"
+    "deploy": "git push"
   },
   "eslintConfig": {
     "extends": [
