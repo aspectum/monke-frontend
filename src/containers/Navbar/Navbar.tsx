@@ -35,7 +35,7 @@ const IconSignOut = styled.span`
     cursor: pointer;
 `;
 
-export default (): ReactElement => {
+export default function Navbar(): ReactElement {
     const username = useSelector((state: RootState) => state.authReducer.user?.username);
     const dispatch = useDispatch();
 
@@ -52,4 +52,4 @@ export default (): ReactElement => {
             </IconSignOut>
         </NavContainer>
     );
-};
+}

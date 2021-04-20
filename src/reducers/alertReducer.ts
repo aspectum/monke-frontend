@@ -120,7 +120,7 @@ export default (state = initialState, action: AlertDispatchTypes) => {
         // TODO: do this properly
         case ALERT_EDIT_SUCCESS: {
             // replacing the outdated alert in userAlerts
-            const id = action.payload.id;
+            const { id } = action.payload;
             const newUserAlerts: AlertData[] = [];
             state.userAlerts.forEach((alert) => {
                 if (alert.id === id) {

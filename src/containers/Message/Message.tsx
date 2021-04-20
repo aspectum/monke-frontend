@@ -63,7 +63,7 @@ const MessageBullet = styled.span`
     color: ${(props) => props.theme.accentColor};
 `;
 
-const Message = styled.div`
+const SingleMessage = styled.div`
     display: flex;
     margin: 10px 0;
 `;
@@ -72,7 +72,7 @@ const MessageText = styled.div`
     font-size: 1.5rem;
 `;
 
-export default (): ReactElement => {
+export default function Message(): ReactElement {
     const msgState = useSelector((state: RootState) => state.messageReducer);
     const dispatch = useDispatch();
 
@@ -100,15 +100,15 @@ export default (): ReactElement => {
                 </MessageHeader>
                 <MessageText>
                     {msgState.messages.map((msg) => (
-                        <Message key={hashCode(msg)}>
+                        <SingleMessage key={hashCode(msg)}>
                             <MessageBullet>
                                 <FontAwesomeIcon icon={faCaretRight} />
                             </MessageBullet>
                             <div>{msg}</div>
-                        </Message>
+                        </SingleMessage>
                     ))}
                 </MessageText>
             </MessageBox>
         </ThemeProvider>
     );
-};
+}

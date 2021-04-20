@@ -129,7 +129,7 @@ function AlertDetais(): ReactElement {
             </AlertDetailsWrapper>
         );
     }
-    const lowestPrice = alert.product.lowestPrice;
+    const { lowestPrice } = alert.product;
     return (
         <AlertDetailsWrapper>
             <AlertDetailsHeader>
